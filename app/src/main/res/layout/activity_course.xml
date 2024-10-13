@@ -16,7 +16,7 @@
             android:id="@+id/logoMaisonneuve"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:src="@drawable/logoazul"
+            android:src="@drawable/logo"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="40dp"/>
 
@@ -111,80 +111,57 @@
             android:layout_alignParentEnd="true"
             android:background="@drawable/edittext_background"
             android:padding="16dp"/>
-        
-        <LinearLayout
-            android:id="@+id/botones"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/sessioncours"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp">
 
         <!-- Botón para seleccionar la imagen -->
-            <Button
-                android:id="@+id/selectImageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sélectionner une Image"
-                android:backgroundTint="@color/blue"
-                android:layout_below="@id/sessioncours"
-                android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"/>
-
-
-
-            <!-- Botón para seleccionar el archivo -->
-            <Button
-                android:id="@+id/selectFileButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/blue"
-                android:text="Sélectionner un fichier"
-                android:layout_below="@id/imageNameTextView"
-                android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/avis"
+        <Button
+            android:id="@+id/selectImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/botones"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp">
-        <!-- TextView para mostrar el nombre de la imagen seleccionada -->
-            <TextView
-                android:id="@+id/imageNameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/botones"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="8dp"
-                android:text="Aucune image sélectionnée"
-                android:textSize="14sp"/>
+            android:text="Sélectionner une image"
+            android:layout_below="@id/sessioncours"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"/>
 
-            <!-- TextView pour afficher le nom du fichier sélectionné -->
-            <TextView
-                android:id="@+id/fileNameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/botones"
-                android:layout_marginTop="8dp"
-                android:layout_centerHorizontal="true"
-                android:text="Aucun fichier sélectionné"
-                android:textSize="14sp"/>
-        </LinearLayout>
+        <!-- TextView para mostrar el nombre de la imagen seleccionada -->
+        <TextView
+            android:id="@+id/imageNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/selectImageButton"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
+            android:text="Aucune image sélectionnée"
+            android:textSize="14sp"/>
+
+        <!-- Botón para seleccionar el archivo -->
+        <Button
+            android:id="@+id/selectFileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sélectionner un fichier"
+            android:layout_below="@id/imageNameTextView"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"/>
+
+        <!-- TextView pour afficher le nom du fichier sélectionné -->
+        <TextView
+            android:id="@+id/fileNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/selectFileButton"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
+            android:text="Aucun fichier sélectionné"
+            android:textSize="14sp"/>
 
         <Button
             android:id="@+id/addcourse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ajouter Cours"
+            android:backgroundTint="@color/colorPrimary"
             android:layout_centerHorizontal="true"
-            android:backgroundTint="@color/blue"
-            android:layout_below="@id/avis"
+            android:layout_below="@id/fileNameTextView"
             android:layout_marginTop="16dp"/>
 
         <FrameLayout

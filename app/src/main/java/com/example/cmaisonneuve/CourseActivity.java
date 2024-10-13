@@ -260,7 +260,6 @@ public class CourseActivity extends AppCompatActivity {
                 openFileChooser();
             }
         });
-
         // Botón para agregar curso
         addCourseButton.setOnClickListener(new View.OnClickListener() {
             @Override

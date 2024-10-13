@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cmaisonneuve"
         tools:targetApi="31">
-
+        <activity
+            android:name=".StudentActivity"
+            android:exported="false" />
         <!-- Configuración del FileProvider -->
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -22,16 +24,7 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider>
-
-        <!-- Actividades -->
-        <activity
-            android:name=".TakeQuizActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CreateQuizActivity"
-            android:exported="false" />
-
+        </provider> <!-- Actividades -->
         <activity
             android:name=".ViewCoursActivity"
             android:exported="false" />

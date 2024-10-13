@@ -5,28 +5,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/imageCard"
+    <!-- Imagen del curso -->
+    <ImageView
+        android:id="@+id/imageCours"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="350dp"
+        android:src="@drawable/courseimage"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Imagen del curso -->
-        <ImageView
-            android:id="@+id/imageCours"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/courseimage" />
-    </androidx.cardview.widget.CardView>
-
+    <!-- Título del curso -->
     <TextView
         android:id="@+id/nomcourstext"
         android:layout_width="wrap_content"
@@ -34,8 +23,8 @@
         android:text="Basic Drawing"
         android:textSize="35sp"
         android:textStyle="bold"
-        android:textColor="@color/blue"
-        app:layout_constraintTop_toBottomOf="@id/imageCard"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/imageCours"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
@@ -84,44 +73,16 @@
         android:layout_marginTop="8dp"/>
 
     <!-- Botón para descargar material del curso -->
-
     <Button
         android:id="@+id/fileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Material"
-        android:backgroundTint="@color/blue"
+        android:text="Download Course Material"
+        android:backgroundTint="@color/orange"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/enseignanttext"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/quizButton" /> <!-- Restringir al inicio de quizButton -->
-
-    <Button
-        android:id="@+id/quizButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/blue"
-        android:text="Quiz"
-        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fileName"
-        app:layout_constraintTop_toBottomOf="@id/enseignanttext" />
-
-    <ImageButton
-        android:id="@+id/btntakequiz"
-        android:paddingRight="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:layout_marginTop="16dp"
-        android:contentDescription="Modifier"
-        android:src="@drawable/takequiz"
-        app:layout_constraintTop_toBottomOf="@id/enseignanttext"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-
+        android:layout_marginTop="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

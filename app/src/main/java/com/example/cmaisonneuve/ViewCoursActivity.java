@@ -9,10 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,8 +31,6 @@ public class ViewCoursActivity extends AppCompatActivity {
     private TextView sessionText;
     private ImageView imageCours;
     private Button fichier;
-    private Button quizButton;
-    private ImageButton btntakequiz;
     private DatabaseHelper dbHelper;
 
     @Override
@@ -49,10 +45,6 @@ public class ViewCoursActivity extends AppCompatActivity {
         sessionText = findViewById(R.id.sessioncours);
         imageCours = findViewById(R.id.imageCours);
         fichier = findViewById(R.id.fileName);
-        quizButton = findViewById(R.id.quizButton);
-        btntakequiz = findViewById(R.id.btntakequiz);
-
-
 
         // Inicializa el helper de la base de datos
         dbHelper = new DatabaseHelper(this);
@@ -78,26 +70,6 @@ public class ViewCoursActivity extends AppCompatActivity {
         fichier.setOnClickListener(view -> {
             loadCourseFile(courseId); // Carga y descarga el archivo
         });
-
-
-        quizButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ViewCoursActivity.this, CreateQuizActivity.class);
-                intent.putExtra("course_id", courseId);
-                startActivity(intent);
-            }
-        });
-
-
-        btntakequiz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ViewCoursActivity.this, TakeQuizActivity.class);
-                intent.putExtra("course_id", courseId); // Pasa el ID del curso para cargar el quiz
-                startActivity(intent); // Lanza la actividad para tomar el quiz
-            }
-        });
     }
 
     private void loadCourseImage(int courseId) {
@@ -119,26 +91,6 @@ public class ViewCoursActivity extends AppCompatActivity {
             Toast.makeText(this, "Archivo no disponible", Toast.LENGTH_SHORT).show();
         }
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            // Recibir el quiz creado por el usuario
-            String question1 = data.getStringExtra("question1");
-            String option1_1 = data.getStringExtra("option1_1");
-            String option1_2 = data.getStringExtra("option1_2");
-            String option1_3 = data.getStringExtra("option1_3");
-            int correctAnswer1 = data.getIntExtra("correctAnswer1", -1);
-
-            // Similar para las otras preguntas
-
-            // Mostrar los datos o guardarlos en la base de datos
-            Toast.makeText(this, "Quiz creado con éxito", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
 
     private void downloadFile(byte[] fileData, String fileName) {
         try {
@@ -198,7 +150,6 @@ public class ViewCoursActivity extends AppCompatActivity {
             Toast.makeText(this, "Erreur lors du téléchargement du fichier.", Toast.LENGTH_SHORT).show();
         }
     }
-
 
 
 

@@ -5,13 +5,13 @@ android:orientation="vertical"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:gravity="center"
-android:background="@color/blue">
+android:background="@color/background">
 
 <!-- Icono de educación -->
 <ImageView
     android:layout_width="150dp"
     android:layout_height="150dp"
-    android:src="@drawable/logo"
+    android:src="@drawable/education"
     android:contentDescription="education_icon" />
 
 <!-- Título de la aplicación -->
@@ -49,9 +49,8 @@ android:background="@color/blue">
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="GET STARTED"
-    android:textStyle="bold"
-    android:backgroundTint="@color/white"
-    android:textColor="@color/blue"
+    android:backgroundTint="@color/orange"
+    android:textColor="@android:color/white"
     android:layout_marginTop="24dp" />
 
 </LinearLayout>

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 
+import com.example.cmaisonneuve.db.DatabaseHelper;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -28,7 +29,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
   private ViewPager2 viewPager;
   private TabLayout tabLayout;
-    private ActivityResultLauncher<Intent> editCourseLauncher;
+  private ActivityResultLauncher<Intent> editCourseLauncher;
 
 
     @Override
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                       tab.setIcon(R.drawable.ic_lesson);
                       break;
                   case 1:
-                      tab.setText("Quiz");
+                      tab.setText("Mes Cours");
                       tab.setIcon(R.drawable.quiz);
                       break;
                   case 2:
@@ -91,9 +92,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-       getMenuInflater().inflate(R.menu.menu_items, menu);
-       return true;
+        getMenuInflater().inflate(R.menu.menu_items, menu);
+
+        // Obtener el ID del usuario actual desde el Intent
+        Intent intent = getIntent();
+        User user = (User) intent.getSerializableExtra("user");
+
+        // Verificar si el usuario tiene ID 1
+        MenuItem addCourseItem = menu.findItem(R.id.action_add_course);
+        MenuItem removeStudent = menu.findItem(R.id.action_remove_etudiant);
+        if (user != null && user.getId() == 1) {
+            // Mostrar el ítem de añadir curso solo para el usuario con ID = 1
+            addCourseItem.setVisible(true);
+            removeStudent.setVisible(true);
+        } else {
+            // Ocultar el ítem para otros usuarios
+            addCourseItem.setVisible(false);
+        }
+
+        return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -104,6 +123,12 @@ public class MainActivity extends AppCompatActivity {
              Intent intent = new Intent(MainActivity.this, LoginActivity.class);
              startActivity(intent);
          }
+
+        if(id == R.id.action_remove_etudiant){
+            Intent intent = new Intent(MainActivity.this, StudentActivity.class);
+            startActivity(intent);
+        }
+
 
         if(id == R.id.action_add_course){
             Intent intent = new Intent(MainActivity.this, CourseActivity.class);
@@ -117,4 +142,5 @@ public class MainActivity extends AppCompatActivity {
     public ActivityResultLauncher<Intent> getEditCourseLauncher(){
         return editCourseLauncher;
     }
+
 }

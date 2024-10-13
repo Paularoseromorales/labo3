@@ -3,7 +3,6 @@
 
     <style name="Base.Theme.Cmaisonneuve" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <item name="android:popupBackground">#1976D2</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
