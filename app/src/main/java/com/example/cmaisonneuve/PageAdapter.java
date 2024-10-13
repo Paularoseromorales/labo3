@@ -28,7 +28,7 @@ public class PageAdapter extends FragmentStateAdapter {
             case 0:
                 return new ListCoursFragment();
             case 1:
-//                return new QuizFragment();
+                return new MesCoursFragment();
             case 2:
                 return new InscriptionFragment();
             case 3:

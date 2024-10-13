@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-
+import com.example.cmaisonneuve.db.DatabaseHelper;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                       tab.setIcon(R.drawable.ic_lesson);
                       break;
                   case 1:
-                      tab.setText("Quiz");
+                      tab.setText("Mes Cours");
                       tab.setIcon(R.drawable.quiz);
                       break;
                   case 2:
@@ -91,8 +91,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-       getMenuInflater().inflate(R.menu.menu_items, menu);
-       return true;
+        getMenuInflater().inflate(R.menu.menu_items, menu);
+
+        // Obtener el ID del usuario actual desde el Intent
+        Intent intent = getIntent();
+        User user = (User) intent.getSerializableExtra("user");
+
+        // Verificar si el usuario tiene ID 1
+        MenuItem addCourseItem = menu.findItem(R.id.action_add_course);
+
+        if (user != null && user.getId() == 1) {
+            // Mostrar el ítem de añadir curso solo para el usuario con ID = 1
+            addCourseItem.setVisible(true);
+
+        } else {
+            // Ocultar el ítem para otros usuarios
+            addCourseItem.setVisible(false);
+        }
+
+        return true;
     }
 
     @Override

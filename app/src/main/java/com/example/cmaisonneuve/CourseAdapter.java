@@ -2,6 +2,7 @@ package com.example.cmaisonneuve;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.cmaisonneuve.db.DatabaseHelper;
 
 import java.util.List;
 
@@ -48,6 +50,20 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         holder.titre.setText(courseItem.getCourseName());  // Asignar el nombre del curso al EditText
         holder.textViewSigle.setText(courseItem.getSigle());
         holder.textViewTeacherName.setText(courseItem.getTeacherName());
+
+
+        // Obtener el ID del usuario actual
+        SharedPreferences preferences = holder.itemView.getContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+        int currentUserId = preferences.getInt("currentUserId", -1);
+
+        // Mostrar botones solo si el ID del usuario es 1
+        if (currentUserId == 1) {
+            holder.btnModifyCourse.setVisibility(View.VISIBLE);
+            holder.btnRemoveCourse.setVisibility(View.VISIBLE);
+        } else {
+            holder.btnModifyCourse.setVisibility(View.GONE);
+            holder.btnRemoveCourse.setVisibility(View.GONE);
+        }
 
         // Configurar el botón de modificación
         holder.btnModifyCourse.setOnClickListener(v -> {
