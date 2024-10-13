@@ -4,9 +4,19 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
+    private int id; // Campo para el ID del usuario
     private String fullname;
     private String username;
     private String password;
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public String getFullname() {
         return fullname;

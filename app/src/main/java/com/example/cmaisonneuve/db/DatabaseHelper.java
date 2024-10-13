@@ -21,12 +21,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Nombre y versión de la base de datos
 
     private static final String DATABASE_NAME = "school.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Tablas
     private static final String TABLE_USERS = "users";
     private static final String TABLE_COURSES = "courses";
     private static final String TABLE_QUIZZES = "quizzes";
+    private static final String TABLE_MES_COURSES = "mescurses"; // Nueva tabla para las inscripciones
+    /////////////////////////////////1
 
     // Columnas de usuarios
     private static final String COLUMN_USER_ID = "id";
@@ -69,7 +71,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_QUIZ_OPTION3_Q3 = "option3_q3";
     private static final String COLUMN_QUIZ_CORRECT_ANSWER_Q3 = "correct_answer_q3";
 
-
+    //////////////////////////////////////////////////////////////////1
+    // Columnas de mescurses (inscripciones)
+    private static final String COLUMN_MES_COURSES_ID = "id";
+    private static final String COLUMN_MES_COURSES_USER_ID = "user_id";
+    private static final String COLUMN_MES_COURSES_COURSE_ID = "course_id";
+    private static final String COLUMN_MES_COURSES_NOTE = "note"; // Columna para la nota
+    //////////////////////////////////////////////////////////////////1
 
 
     public DatabaseHelper(@Nullable Context context) {
@@ -115,15 +123,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_QUIZ_OPTION3_Q3 + " TEXT,"
                 + COLUMN_QUIZ_CORRECT_ANSWER_Q3 + " INTEGER" + ")";
 
+        String CREATE_MES_COURSES_TABLE = "CREATE TABLE " + TABLE_MES_COURSES + "("
+                + COLUMN_MES_COURSES_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMN_MES_COURSES_USER_ID + " INTEGER NOT NULL,"
+                + COLUMN_MES_COURSES_COURSE_ID + " INTEGER NOT NULL,"
+                + COLUMN_MES_COURSES_NOTE + " TEXT,"
+                + "FOREIGN KEY(" + COLUMN_MES_COURSES_USER_ID + ") REFERENCES " + TABLE_USERS + "(" + COLUMN_USER_ID + "),"
+                + "FOREIGN KEY(" + COLUMN_MES_COURSES_COURSE_ID + ") REFERENCES " + TABLE_COURSES + "(" + COLUMN_COURSES_ID + ")"
+                + ")";
+
         sqLiteDatabase.execSQL(CREATE_USER_TABLE);
         sqLiteDatabase.execSQL(CREATE_USER_COURSES);
         sqLiteDatabase.execSQL(CREATE_QUIZ_TABLE);
+        sqLiteDatabase.execSQL(CREATE_MES_COURSES_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_COURSES);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_MES_COURSES); // Eliminar la tabla mescurses si existe
         onCreate(sqLiteDatabase);
     }
 
@@ -137,22 +156,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1; // Retorna true si la inserción fue exitosa
     }
 
-    public boolean checkUser(User user) {
+//    public boolean checkUser(User user) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + "=? AND " + COLUMN_USER_PASSWORD + "=?", new String[]{user.getUsername(), user.getPassword()});
+//        return cursor.getCount() > 0;
+//    }
+
+    public User checkUser(User user) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + "=? AND " + COLUMN_USER_PASSWORD + "=?", new String[]{user.getUsername(), user.getPassword()});
-        return cursor.getCount() > 0;
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_USER_ID + ", " + COLUMN_USER_FULL_NAME + " FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + "=? AND " + COLUMN_USER_PASSWORD + "=?", new String[]{user.getUsername(), user.getPassword()});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int userId = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_USER_ID));
+            String fullName = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USER_FULL_NAME));
+
+            User loggedInUser = new User();
+            loggedInUser.setId(userId); // Asigna el ID del usuario
+            loggedInUser.setFullname(fullName); // Asigna el nombre completo del usuario
+
+            cursor.close();
+            return loggedInUser; // Devuelve el objeto User con el ID y el nombre completo
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        return null; // Devuelve null si las credenciales no son correctas
     }
 
     public User getUserByUsername(String username) {
         User user = null;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query("users", null, "username=?", new String[]{username}, null, null, null);
-
+        Cursor cursor = db.query(TABLE_USERS, null, COLUMN_USERNAME + "=?", new String[]{username}, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
             user = new User();
-            user.setUsername(cursor.getString(cursor.getColumnIndexOrThrow("username")));
-            user.setFullname(cursor.getString(cursor.getColumnIndexOrThrow("fullname"))); // Asegúrate de que esta columna existe en tu tabla
-            user.setPassword(cursor.getString(cursor.getColumnIndexOrThrow("password"))); // Puede que no necesites la contraseña aquí
+            user.setUsername(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USERNAME)));
+            user.setFullname(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USER_FULL_NAME)));
+            user.setPassword(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USER_PASSWORD)));
             cursor.close();
         }
 
@@ -235,14 +276,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_COURSES_SIGLE, courseItem.getSigle());
         contentValues.put(COLUMN_COURSES_TEACHER, courseItem.getTeacherName());
         contentValues.put(COLUMN_COURSES_SESSION, courseItem.getSession());
-        long result = db.update(TABLE_COURSES, contentValues, "id=?", new String[]{String.valueOf(courseItem.getId())});
+        long result = db.update(TABLE_COURSES, contentValues, COLUMN_COURSES_ID + "=?", new String[]{String.valueOf(courseItem.getId())});
         return result > 0; // Retorna true si la actualización fue exitosa
     }
 
     public boolean deleteCourse(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.delete(TABLE_COURSES, "id=?", new String[]{String.valueOf(id)});
-        return result > 0; // Retorna true si la eliminación fue exitosa
+        long result = db.delete(TABLE_COURSES, COLUMN_COURSES_ID + "=?", new String[]{String.valueOf(id)});        return result > 0; // Retorna true si la eliminación fue exitosa
     }
 
     public byte[] getCourseImage(int courseId) {
@@ -268,6 +308,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return null; // No se encontró el archivo
     }
+
+    //////////////////////////////////////////////////////////////////1
+    // Método para insertar en la tabla mescurses (inscripciones)
+// Método para insertar en la tabla mescurses (inscripciones)
+    public boolean insertUserCourse(int userId, int courseId, String note) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_MES_COURSES_USER_ID, userId);  // Asegurarse de que aquí llegue el userId correcto
+        contentValues.put(COLUMN_MES_COURSES_COURSE_ID, courseId);
+        contentValues.put(COLUMN_MES_COURSES_NOTE, note);
+
+        long result = db.insert(TABLE_MES_COURSES, null, contentValues);
+        db.close();
+
+        return result != -1; // Retorna true si la inserción fue exitosa
+    }
+
+
+    // Método para obtener los cursos en los que está inscrito un usuario específico
+    public Cursor getCoursesForCurrentUser(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT c." + COLUMN_COURSES_ID + ", c." + COLUMN_COURSES_NAME +
+                ", c." + COLUMN_COURSES_SIGLE + ", c." + COLUMN_COURSES_TEACHER +
+                ", c." + COLUMN_COURSES_SESSION +
+                " FROM " + TABLE_MES_COURSES + " mc " +
+                " INNER JOIN " + TABLE_COURSES + " c ON mc." + COLUMN_MES_COURSES_COURSE_ID + " = c." + COLUMN_COURSES_ID +
+                " WHERE mc." + COLUMN_MES_COURSES_USER_ID + " = ?";
+
+        return db.rawQuery(query, new String[]{String.valueOf(userId)});
+    }
+
+
+    //////////////////////////////////////////////////////////////////1
 
 
     public boolean insertQuiz(int courseId,
