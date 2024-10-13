@@ -89,7 +89,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     // Clase interna ViewHolder
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
-        EditText titre;  // Usamos EditText en lugar de TextView
+        TextView titre;
         TextView textViewSigle;
         TextView textViewTeacherName;
         ImageButton btnRemoveCourse;
@@ -97,7 +97,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
-            titre = itemView.findViewById(R.id.titre);  // Inicializamos el EditText
+            titre = itemView.findViewById(R.id.titre);
             textViewSigle = itemView.findViewById(R.id.sigleCourse);
             textViewTeacherName = itemView.findViewById(R.id.teacherText);
             btnRemoveCourse = itemView.findViewById(R.id.btn_remove_course);
