@@ -1,0 +1,101 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F0F0F0"
+    android:gravity="center"
+    android:backgroundTint="@color/blueclaro"
+    android:padding="16dp">
+
+    <!-- Imagen de perfil -->
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/perfil"
+        android:layout_marginBottom="16dp"/>
+<!--        android:background="@drawable/circle_background" />-->
+
+    <!-- Nombre del usuario -->
+    <TextView
+        android:id="@+id/fullnameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lorem Name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColorHint="@color/blue"
+        android:layout_gravity="center"
+        android:textColor="#000"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Descripción del usuario -->
+    <TextView
+        android:id="@+id/usernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nombre usuario"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+        android:textColor="#888"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Lista de opciones -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:padding="8dp">
+
+        <!-- Elementos del menú (puedes agregar más según necesites) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lorem"
+            android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+            android:drawablePadding="8dp"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ipsum dolor"
+            android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+            android:drawablePadding="8dp"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sit amet"
+            android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+            android:drawablePadding="8dp"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:gravity="center_vertical" />
+
+        <!-- Opción de Logout -->
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log out"
+            android:drawableEnd="@drawable/baseline_logout_24"
+            android:drawablePadding="8dp"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:gravity="center_vertical"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout  android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".CourseActivity">
+
+        <ImageView
+            android:id="@+id/logoMaisonneuve"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/logoazul"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nom du Cours :"
+            android:layout_below="@+id/logoMaisonneuve"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/nomcourstext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Saisissez le nom du cours"
+            android:layout_below="@id/logoMaisonneuve"
+            android:layout_marginEnd="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/edittext_background"
+            android:padding="16dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="description  :"
+            android:layout_below="@+id/nomcourstext"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/siglecourstext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Saisissez sigle du cours"
+            android:layout_below="@id/nomcourstext"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/edittext_background"
+            android:padding="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enseignant:"
+            android:layout_below="@+id/siglecourstext"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/enseignanttext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Saisissez le de l'enseignant"
+            android:layout_below="@id/siglecourstext"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/edittext_background"
+            android:padding="16dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="date debut -date fin :"
+            android:layout_below="@+id/enseignanttext"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/sessioncours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Saisissez la session du cours"
+            android:layout_below="@id/enseignanttext"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/edittext_background"
+            android:padding="16dp"/>
+
+
+        <Button
+            android:id="@+id/updateCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modifier Cours"
+            android:backgroundTint="@color/blue"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/sessioncours"/>
+    </RelativeLayout>
+
+</ScrollView>
