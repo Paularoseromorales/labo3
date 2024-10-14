@@ -24,20 +24,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
 
     // Tablas
-    private static final String TABLE_USERS = "users";
+    public static final String TABLE_USERS = "users";
     private static final String TABLE_COURSES = "courses";
     private static final String TABLE_QUIZZES = "quizzes";
     private static final String TABLE_MES_COURSES = "mescurses"; // Nueva tabla para las inscripciones
     /////////////////////////////////1
 
     // Columnas de usuarios
-    private static final String COLUMN_USER_ID = "id";
+    public static final String COLUMN_USER_ID = "id";
     public static final String COLUMN_USER_FULL_NAME = "fullname";
     public static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_USER_PASSWORD = "password";
 
     // Columnas de cursos
-    private static final String COLUMN_COURSES_ID = "id";
+    public static final String COLUMN_COURSES_ID = "id";
     private static final String COLUMN_COURSES_NAME = "name";
     private static final String COLUMN_COURSES_SIGLE = "sigle";
     private static final String COLUMN_COURSES_TEACHER = "teacher";
@@ -74,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //////////////////////////////////////////////////////////////////1
     // Columnas de mescurses (inscripciones)
     private static final String COLUMN_MES_COURSES_ID = "id";
-    private static final String COLUMN_MES_COURSES_USER_ID = "user_id";
+    public static final String COLUMN_MES_COURSES_USER_ID = "user_id";
     private static final String COLUMN_MES_COURSES_COURSE_ID = "course_id";
     private static final String COLUMN_MES_COURSES_NOTE = "note"; // Columna para la nota
     //////////////////////////////////////////////////////////////////1
@@ -421,28 +421,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count >= 3; // Si ya hay 3 o más cursos, retorna true
     }
 
-//    public boolean deleteStudentByName(String studentName) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        // Ejecutar la eliminación del estudiante basado en su nombre
-//        long result = db.delete(TABLE_USERS, COLUMN_USER_FULL_NAME + "=?", new String[]{studentName});
-//        return result > 0; // Retorna true si la eliminación fue exitosa
-//    }
-//        public boolean deleteStudentFromCourse(int userId, int courseId) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        // Ejecutar la eliminación del registro en la tabla mescourses basado en userId y courseId
-//        long result = db.delete(TABLE_MES_COURSES, COLUMN_MES_COURSES_USER_ID + "=? AND " + COLUMN_MES_COURSES_COURSE_ID + "=?",
-//                new String[]{String.valueOf(userId), String.valueOf(courseId)});
-//        return result > 0; // Retorna true si la eliminación fue exitosa
-//    }
 
-    public boolean deleteStudentByName(String studentName) {
+    public boolean deleteStudentFromCourse(int userId, int courseId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        // Ejecutar la eliminación del curso basado en el nombre del estudiante
-        long result = db.delete(TABLE_MES_COURSES,
-                COLUMN_MES_COURSES_USER_ID + " = (SELECT " + COLUMN_USER_ID + " FROM " + TABLE_USERS + " WHERE " + COLUMN_USER_FULL_NAME + " = ?)",
-                new String[]{studentName});
+        // Ejecutar la eliminación del registro en la tabla mescourses basado en userId y courseId
+        long result = db.delete(TABLE_MES_COURSES, COLUMN_MES_COURSES_USER_ID + "=? AND " + COLUMN_MES_COURSES_COURSE_ID + "=?",
+                new String[]{String.valueOf(userId), String.valueOf(courseId)});
         return result > 0; // Retorna true si la eliminación fue exitosa
     }
+
+
 
 
 
