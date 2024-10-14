@@ -39,7 +39,7 @@ public class StudentActivity extends AppCompatActivity {
         recyclerViewStudents = findViewById(R.id.recycler_view_students);
 
         recyclerViewStudents.setLayoutManager(new LinearLayoutManager(this));
-        studentAdapter = new StudentAdapter(studentsList);
+        studentAdapter = new StudentAdapter(studentsList, databaseHelper); // Pasar DatabaseHelper
         recyclerViewStudents.setAdapter(studentAdapter);
 
         // Cargar los estudiantes inscritos en el curso desde la base de datos

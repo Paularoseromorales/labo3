@@ -421,5 +421,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count >= 3; // Si ya hay 3 o más cursos, retorna true
     }
 
+//    public boolean deleteStudentByName(String studentName) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        // Ejecutar la eliminación del estudiante basado en su nombre
+//        long result = db.delete(TABLE_USERS, COLUMN_USER_FULL_NAME + "=?", new String[]{studentName});
+//        return result > 0; // Retorna true si la eliminación fue exitosa
+//    }
+//        public boolean deleteStudentFromCourse(int userId, int courseId) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        // Ejecutar la eliminación del registro en la tabla mescourses basado en userId y courseId
+//        long result = db.delete(TABLE_MES_COURSES, COLUMN_MES_COURSES_USER_ID + "=? AND " + COLUMN_MES_COURSES_COURSE_ID + "=?",
+//                new String[]{String.valueOf(userId), String.valueOf(courseId)});
+//        return result > 0; // Retorna true si la eliminación fue exitosa
+//    }
+
+    public boolean deleteStudentByName(String studentName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Ejecutar la eliminación del curso basado en el nombre del estudiante
+        long result = db.delete(TABLE_MES_COURSES,
+                COLUMN_MES_COURSES_USER_ID + " = (SELECT " + COLUMN_USER_ID + " FROM " + TABLE_USERS + " WHERE " + COLUMN_USER_FULL_NAME + " = ?)",
+                new String[]{studentName});
+        return result > 0; // Retorna true si la eliminación fue exitosa
+    }
+
+
+
+
 
 }
