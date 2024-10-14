@@ -130,7 +130,7 @@
             android:id="@+id/updateCourse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/modifier_quiz"
+            android:text="@string/modifier"
             android:backgroundTint="@color/blue"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/sessioncours"

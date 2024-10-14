@@ -101,7 +101,7 @@ import java.util.List;
                         break;
                     case 1:
                         tab.setText("Mes Cours");
-                        tab.setIcon(R.drawable.quiz);
+                        tab.setIcon(R.drawable.mcours);
                         break;
                     case 2:
                         tab.setText("Inscrire");

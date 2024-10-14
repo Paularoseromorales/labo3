@@ -1,142 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="0dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <include layout="@layout/toolbar"/>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/imageCard"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="30dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        android:orientation="vertical"
+        android:padding="0dp">
 
-        <!-- Imagen del curso -->
-        <ImageView
-            android:id="@+id/imageCours"
+        <include layout="@layout/toolbar"/>
+
+        <!-- CardView para la imagen del curso -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageCard"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:paddingTop="40dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/courseimage" />
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="30dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp">
+
+            <!-- Imagen del curso -->
+            <ImageView
+                android:id="@+id/imageCours"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/courseimage" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Título del curso -->
+        <TextView
+            android:id="@+id/nomcourstext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titre"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:textColor="@color/blue"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Descripción del curso -->
+        <TextView
+            android:id="@+id/siglecourstext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_description"
+            android:textSize="16sp"
+            android:padding="20dp"
+            android:backgroundTint="@color/gray"
+            android:textColor="@android:color/black"
+            android:layout_margin="10dp"
+            android:gravity="center"/>
+
+        <!-- Fecha de inicio y fin -->
+        <TextView
+            android:id="@+id/sessioncours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_debut_fin"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Nombre del profesor -->
+        <TextView
+            android:id="@+id/enseignanttext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_enseignant"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:paddingBottom="20dp"/>
+
+        <!-- Grupo de botones en filas -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <!-- Botón Documentos -->
+            <Button
+                android:id="@+id/fileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Documents"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/blue"
+                android:textColor="@android:color/white"/>
+
+            <ImageButton
+                android:id="@+id/btntakequiz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:contentDescription="@string/quiz"
+                android:src="@drawable/takequiz"/>
 
 
-    <TextView
-        android:id="@+id/nomcourstext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/titre"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:textColor="@color/blue"
-        app:layout_constraintTop_toBottomOf="@id/imageCard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        </LinearLayout>
 
-    <!-- Descripción del curso -->
-    <TextView
-        android:id="@+id/siglecourstext"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/hint_description"
-        android:backgroundTint="@color/gray"
-        android:textSize="16sp"
-        android:layout_margin="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/nomcourstext"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="16dp">
 
-    <!-- Fecha de inicio y fin -->
-    <TextView
-        android:id="@+id/sessioncours"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hint_debut_fin"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/siglecourstext"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+            <!-- Botón Estudiantes -->
+            <Button
+                android:id="@+id/list_students"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btnEtudiants"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="@color/blue"
+                android:textColor="@android:color/white"/>
 
-    <!-- Nombre del profesor -->
-    <TextView
-        android:id="@+id/enseignanttext"
-        android:paddingBottom="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hint_enseignant"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/sessioncours"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+            <!-- Botón Take Quiz -->
+            <!-- Botón Quiz -->
+            <Button
+                android:id="@+id/quizButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quiz"
+                android:backgroundTint="@color/blue"
+                android:textColor="@android:color/white"/>
 
-    <!-- Botón para descargar material del curso -->
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/fileName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Documents"
-        android:backgroundTint="@color/blue"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/enseignanttext"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/quizButton" /> <!-- Restringir al inicio de quizButton -->
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/list_students"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnEtudiants"
-        android:backgroundTint="@color/orange"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/fileName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
-
-    <Button
-        android:id="@+id/quizButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/blue"
-        android:text="@string/quiz"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fileName"
-        app:layout_constraintTop_toBottomOf="@id/enseignanttext" />
-
-    <ImageButton
-        android:id="@+id/btntakequiz"
-        android:paddingRight="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/quiz"
-        android:src="@drawable/takequiz"
-        app:layout_constraintTop_toBottomOf="@id/enseignanttext"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
