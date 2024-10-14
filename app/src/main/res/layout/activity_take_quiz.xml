@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:padding="16dp">
 
     <LinearLayout
@@ -9,98 +11,177 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Pregunta 1 -->
+        <!-- Título del quiz -->
         <TextView
-            android:id="@+id/question1Text"
+            android:id="@+id/quizTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pregunta 1" />
+            android:text="Quiz"
+            android:textSize="30sp"
+            android:textColor="@color/blue"
+            android:gravity="center"
+            android:padding="1dp"
+            android:textStyle="bold" />
 
-        <RadioGroup
-            android:id="@+id/question1Group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <!-- Pregunta 1 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/blue"
+            android:padding="16dp">
 
-            <RadioButton
-                android:id="@+id/option1Q1"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Opción 1" />
+                android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/option2Q1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Opción 2" />
+                <TextView
+                    android:id="@+id/question1Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="¿Cuántos hechiceros participaron?"
+                    android:textColor="#FFFFFF"
+                    android:textStyle=""
+                    android:textSize="18sp"
+                    android:padding="8dp" />
 
-            <RadioButton
-                android:id="@+id/option3Q1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Opción 3" />
-        </RadioGroup>
+                <RadioGroup
+                    android:id="@+id/question1Group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/option1Q1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ninguno"
+                        android:textColor="#FFFFFF" />
+
+                    <RadioButton
+                        android:id="@+id/option2Q1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textColor="#FFFFFF" />
+
+                    <RadioButton
+                        android:id="@+id/option3Q1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textColor="#FFFFFF" />
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Pregunta 2 -->
-        <TextView
-            android:id="@+id/question2Text"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pregunta 2" />
+            android:layout_marginTop="16dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/blue"
+            android:padding="16dp">
 
-        <RadioGroup
-            android:id="@+id/question2Group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/option1Q2"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Opción 1" />
+                android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/option2Q2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Opción 2" />
+                <TextView
+                    android:id="@+id/question2Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="¿Qué nivel de magia usaron?"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:padding="8dp" />
 
-            <RadioButton
-                android:id="@+id/option3Q2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Opción 3" />
-        </RadioGroup>
+                <RadioGroup
+                    android:id="@+id/question2Group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/option1Q2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Básico"
+                        android:textColor="#FFFFFF" />
+
+                    <RadioButton
+                        android:id="@+id/option2Q2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Intermedio"
+                        android:textColor="#FFFFFF" />
+
+                    <RadioButton
+                        android:id="@+id/option3Q2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Avanzado"
+                        android:textColor="#FFFFFF" />
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Pregunta 3 -->
-        <TextView
-            android:id="@+id/question3Text"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pregunta 3" />
+            android:layout_marginTop="16dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/blue"
+            android:padding="16dp">
 
-        <RadioGroup
-            android:id="@+id/question3Group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/option1Q3"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Opción 1" />
+                android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/option2Q3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Opción 2" />
+                <TextView
+                    android:id="@+id/question3Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="¿Cuál fue el hechizo final?"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:padding="8dp" />
 
-            <RadioButton
-                android:id="@+id/option3Q3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Opción 3" />
-        </RadioGroup>
+                <RadioGroup
+                    android:id="@+id/question3Group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/option1Q3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Expelliarmus"
+                        android:textColor="#FFFFFF" />
+
+                    <RadioButton
+                        android:id="@+id/option2Q3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Expecto Patronum"
+                        android:textColor="#FFFFFF" />
+
+                    <RadioButton
+                        android:id="@+id/option3Q3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Avada Kedavra"
+                        android:textColor="#FFFFFF" />
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Botón para enviar el quiz -->
         <Button
@@ -108,6 +189,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
-            android:text="Enviar Quiz" />
+            android:text="Envoyer Quiz"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center" />
+
     </LinearLayout>
 </ScrollView>
