@@ -7,6 +7,9 @@
     android:backgroundTint="@color/blueclaro"
     android:padding="16dp">
 
+    <include layout="@layout/toolbar"/>
+
+
     <!-- Imagen de perfil -->
     <ImageView
         android:id="@+id/profile_image"
@@ -15,7 +18,7 @@
         android:layout_gravity="center"
         android:src="@drawable/perfil"
         android:layout_marginBottom="16dp"/>
-<!--        android:background="@drawable/circle_background" />-->
+
 
     <!-- Nombre del usuario -->
     <TextView
@@ -93,7 +96,7 @@
             android:drawablePadding="8dp"
             android:padding="16dp"
             android:textSize="16sp"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/gray"
             android:gravity="center_vertical"
             android:layout_marginTop="24dp" />
     </LinearLayout>

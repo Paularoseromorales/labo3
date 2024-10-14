@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <include layout="@layout/toolbar"/>
+
     <TextView
         android:id="@+id/student_name"
         android:layout_width="wrap_content"

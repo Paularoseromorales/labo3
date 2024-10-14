@@ -4,7 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <include layout="@layout/toolbar"/>
+
+
+    <ImageView
+        android:id="@+id/logoMaisonneuve"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/logoazul"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"/>
+    <!-- Título -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inscription au cours"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        android:layout_gravity="center"
+        android:paddingBottom="20dp"/>
 
     <!-- Label pour le Spinner -->
     <TextView
@@ -12,14 +34,17 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:text="Sélectionnez un cours"/>
+        android:text="Sélectionnez un cours"
+        android:layout_marginBottom="10dp"/>
 
     <!-- Spinner pour sélectionner le cours -->
     <Spinner
         android:id="@+id/spinner_courses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:padding="10dp"
+        android:background="@color/backcard"/>
 
     <!-- Bouton Inscription -->
     <Button
@@ -28,6 +53,10 @@
         android:layout_height="wrap_content"
         android:text="S'inscrire"
         android:backgroundTint="@color/blue"
+        android:textColor="@android:color/white"
         android:layout_gravity="center"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="32dp"
+        android:padding="12dp"
+        android:elevation="4dp"/>
+
 </LinearLayout>

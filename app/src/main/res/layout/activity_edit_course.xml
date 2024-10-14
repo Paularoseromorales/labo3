@@ -6,17 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <RelativeLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".CourseActivity">
 
+        <include layout="@layout/toolbar" />
+
         <ImageView
             android:id="@+id/logoMaisonneuve"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:src="@drawable/logoazul"
+            android:layout_below="@id/toolbar"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="40dp"/>
 

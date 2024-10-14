@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <include layout="@layout/toolbar"/>
+
         <!-- Título del quiz -->
         <TextView
             android:id="@+id/quizTitle"
