@@ -45,7 +45,7 @@
                 android:id="@+id/nomcourstext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Saisissez le titre du cours"
+                android:hint="@string/hint_titre"
                 android:background="@drawable/edittext_background"
                 android:padding="16dp"/>
         </LinearLayout>
@@ -60,7 +60,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Description :"
+                android:text="@string/description"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 
@@ -68,7 +68,7 @@
                 android:id="@+id/siglecourstext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Saisissez la description du cours"
+                android:hint="@string/hint_description"
                 android:background="@drawable/edittext_background"
                 android:padding="16dp"/>
         </LinearLayout>
@@ -83,7 +83,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enseignant :"
+                android:text="@string/enseignant"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 
@@ -91,7 +91,7 @@
                 android:id="@+id/enseignanttext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Saisissez le nom de l'enseignant"
+                android:hint="@string/hint_enseignant"
                 android:background="@drawable/edittext_background"
                 android:padding="16dp"/>
         </LinearLayout>
@@ -106,7 +106,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Debut - Fin :"
+                android:text="@string/debut_fin"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 
@@ -114,7 +114,7 @@
                 android:id="@+id/sessioncours"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Saisissez la Date debut-fin"
+                android:hint="@string/hint_debut_fin"
                 android:background="@drawable/edittext_background"
                 android:padding="16dp"/>
         </LinearLayout>
@@ -132,7 +132,7 @@
                 android:id="@+id/selectImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sélectionner Image"
+                android:text="@string/select_image"
                 android:backgroundTint="@color/blue"/>
 
             <Button
@@ -140,7 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/blue"
-                android:text="adjouter un fichier"
+                android:text="@string/add_file"
                 android:layout_marginStart="16dp"/>
         </LinearLayout>
 
@@ -157,7 +157,7 @@
                 android:id="@+id/imageNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aucune image sélectionnée"
+                android:text="@string/no_file_selected"
                 android:textSize="14sp"
                 android:layout_marginEnd="16dp"/>
 
@@ -165,7 +165,7 @@
                 android:id="@+id/fileNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aucun fichier sélectionné"
+                android:text="@string/no_file_selected"
                 android:textSize="14sp"/>
         </LinearLayout>
 
@@ -174,7 +174,7 @@
             android:id="@+id/addcourse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ajouter Cours"
+            android:text="@string/add_course"
             android:backgroundTint="@color/blue"
             android:layout_marginTop="16dp"
             android:layout_gravity="center"/>

@@ -18,7 +18,7 @@
             android:id="@+id/quizTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quiz"
+            android:text="@string/quiz"
             android:textSize="30sp"
             android:textColor="@color/blue"
             android:gravity="center"
@@ -44,7 +44,7 @@
                     android:id="@+id/question1Text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="¿Cuántos hechiceros participaron?"
+                    android:text="@string/q_1"
                     android:textColor="#FFFFFF"
                     android:textStyle=""
                     android:textSize="18sp"
@@ -59,21 +59,21 @@
                         android:id="@+id/option1Q1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ninguno"
+                        android:text="@string/option_1"
                         android:textColor="#FFFFFF" />
 
                     <RadioButton
                         android:id="@+id/option2Q1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
+                        android:text="@string/option_2"
                         android:textColor="#FFFFFF" />
 
                     <RadioButton
                         android:id="@+id/option3Q1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="50"
+                        android:text="@string/option_3"
                         android:textColor="#FFFFFF" />
                 </RadioGroup>
             </LinearLayout>
@@ -98,7 +98,7 @@
                     android:id="@+id/question2Text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="¿Qué nivel de magia usaron?"
+                    android:text="@string/q_2"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:padding="8dp" />
@@ -112,21 +112,21 @@
                         android:id="@+id/option1Q2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Básico"
+                        android:text="@string/option_1"
                         android:textColor="#FFFFFF" />
 
                     <RadioButton
                         android:id="@+id/option2Q2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Intermedio"
+                        android:text="@string/option_2"
                         android:textColor="#FFFFFF" />
 
                     <RadioButton
                         android:id="@+id/option3Q2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Avanzado"
+                        android:text="@string/option_3"
                         android:textColor="#FFFFFF" />
                 </RadioGroup>
             </LinearLayout>
@@ -151,7 +151,7 @@
                     android:id="@+id/question3Text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="¿Cuál fue el hechizo final?"
+                    android:text="@string/q_3"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:padding="8dp" />
@@ -165,21 +165,21 @@
                         android:id="@+id/option1Q3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Expelliarmus"
+                        android:text="@string/option_1"
                         android:textColor="#FFFFFF" />
 
                     <RadioButton
                         android:id="@+id/option2Q3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Expecto Patronum"
+                        android:text="@string/option_2"
                         android:textColor="#FFFFFF" />
 
                     <RadioButton
                         android:id="@+id/option3Q3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Avada Kedavra"
+                        android:text="@string/option_3"
                         android:textColor="#FFFFFF" />
                 </RadioGroup>
             </LinearLayout>
@@ -191,7 +191,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
-            android:text="Envoyer Quiz"
+            android:text="@string/Envoyerquiz"
             android:textColor="@color/white"
             android:layout_marginTop="10dp"
             android:layout_gravity="center" />
