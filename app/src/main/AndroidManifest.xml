@@ -25,6 +25,8 @@
         </provider>
 
         <!-- Actividades -->
+        <activity android:name=".StudentActivity"
+            android:exported="false" />
         <activity
             android:name=".TakeQuizActivity"
             android:exported="false" />
@@ -47,6 +49,7 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="false" />

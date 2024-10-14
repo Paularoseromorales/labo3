@@ -22,7 +22,7 @@
         <ImageView
             android:id="@+id/imageCours"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:src="@drawable/courseimage" />
     </androidx.cardview.widget.CardView>
@@ -97,6 +97,18 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toStartOf="@+id/quizButton" /> <!-- Restringir al inicio de quizButton -->
+
+    <Button
+        android:id="@+id/list_students"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Etudiants du cours"
+        android:backgroundTint="@color/orange"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/fileName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
     <Button
         android:id="@+id/quizButton"

@@ -33,6 +33,8 @@ public class ViewCoursActivity extends AppCompatActivity {
     private TextView sessionText;
     private ImageView imageCours;
     private Button fichier;
+    private Button etudiantsList;
+
     private Button quizButton;
     private ImageButton btntakequiz;
     private DatabaseHelper dbHelper;
@@ -51,6 +53,9 @@ public class ViewCoursActivity extends AppCompatActivity {
         fichier = findViewById(R.id.fileName);
         quizButton = findViewById(R.id.quizButton);
         btntakequiz = findViewById(R.id.btntakequiz);
+        etudiantsList = findViewById(R.id.list_students);
+
+
 
 
 
@@ -98,6 +103,7 @@ public class ViewCoursActivity extends AppCompatActivity {
                 startActivity(intent); // Lanza la actividad para tomar el quiz
             }
         });
+
     }
 
     private void loadCourseImage(int courseId) {

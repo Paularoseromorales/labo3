@@ -32,8 +32,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Columnas de usuarios
     private static final String COLUMN_USER_ID = "id";
-    private static final String COLUMN_USER_FULL_NAME = "fullname";
-    private static final String COLUMN_USERNAME = "username";
+    public static final String COLUMN_USER_FULL_NAME = "fullname";
+    public static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_USER_PASSWORD = "password";
 
     // Columnas de cursos
@@ -338,6 +338,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return db.rawQuery(query, new String[]{String.valueOf(userId)});
     }
+
+    public Cursor getStudentById(int studentId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USER_ID + " = ?";
+        return db.rawQuery(query, new String[]{String.valueOf(studentId)});
+    }
+
+
+    public Cursor getUsersForCourse(int courseId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT u." + COLUMN_USER_ID + ", u." + COLUMN_USER_FULL_NAME +
+                " FROM " + TABLE_MES_COURSES + " mc " +
+                " INNER JOIN " + TABLE_USERS + " u ON mc." + COLUMN_MES_COURSES_USER_ID + " = u." + COLUMN_USER_ID +
+                " WHERE mc." + COLUMN_MES_COURSES_COURSE_ID + " = ?";
+
+        return db.rawQuery(query, new String[]{String.valueOf(courseId)});
+    }
+
 
 
     //////////////////////////////////////////////////////////////////1
