@@ -100,9 +100,6 @@ public class CourseActivity extends AppCompatActivity {
         });
 
 
-
-
-
     }
 
     // Método para abrir el selector de imágenes

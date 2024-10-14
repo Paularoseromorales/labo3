@@ -156,11 +156,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1; // Retorna true si la inserción fue exitosa
     }
 
-//    public boolean checkUser(User user) {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + "=? AND " + COLUMN_USER_PASSWORD + "=?", new String[]{user.getUsername(), user.getPassword()});
-//        return cursor.getCount() > 0;
-//    }
 
     public User checkUser(User user) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -210,6 +205,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (imageData != null) {
             contentValues.put(COLUMN_COURSES_IMAGE, imageData);
+            Log.d("DatabaseInsert", "Image size: " + imageData.length); // Verifica el tamaño de la imagen
+        } else {
+            Log.d("DatabaseInsert", "No image provided");
         }
         if (fileData != null) {
             contentValues.put(COLUMN_COURSES_FILE, fileData);
@@ -406,6 +404,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getQuizByCourseId(int courseId) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_QUIZZES + " WHERE " + COLUMN_QUIZ_COURSE_ID + "=?", new String[]{String.valueOf(courseId)});
+    }
+
+    public boolean areCoursesAlreadyCreated() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_COURSES, null);
+
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0); // Obtenemos el número de cursos existentes
+        }
+
+        cursor.close();
+        db.close();
+
+        return count >= 3; // Si ya hay 3 o más cursos, retorna true
     }
 
 

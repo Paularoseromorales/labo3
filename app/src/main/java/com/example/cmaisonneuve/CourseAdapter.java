@@ -3,11 +3,14 @@ package com.example.cmaisonneuve;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,7 +51,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
         CourseItem courseItem = courseList.get(position);
         holder.titre.setText(courseItem.getCourseName());  // Asignar el nombre del curso al EditText
-        holder.textViewSigle.setText(courseItem.getSigle());
         holder.textViewTeacherName.setText(courseItem.getTeacherName());
 
 
@@ -64,7 +66,15 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             holder.btnModifyCourse.setVisibility(View.GONE);
             holder.btnRemoveCourse.setVisibility(View.GONE);
         }
-
+        // Mostrar la imagen del curso si está disponible
+        if (courseItem.getImage() != null) {
+            // Convertir byte[] a Bitmap
+            Bitmap bitmap = BitmapFactory.decodeByteArray(courseItem.getImage(), 0, courseItem.getImage().length);
+            holder.courseImageView.setImageBitmap(bitmap);  // Asignar el Bitmap a la ImageView
+        } else {
+            // Si no hay imagen, mostrar una imagen predeterminada
+            holder.courseImageView.setImageResource(R.drawable.courseimage);
+        }
         // Configurar el botón de modificación
         holder.btnModifyCourse.setOnClickListener(v -> {
             Context context = holder.itemView.getContext();
@@ -110,6 +120,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         TextView textViewTeacherName;
         ImageButton btnRemoveCourse;
         ImageButton btnModifyCourse;
+        ImageView courseImageView;
 
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -118,6 +129,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             textViewTeacherName = itemView.findViewById(R.id.teacherText);
             btnRemoveCourse = itemView.findViewById(R.id.btn_remove_course);
             btnModifyCourse = itemView.findViewById(R.id.btn_modify_course);
+            courseImageView = itemView.findViewById(R.id.course_image); // Referencia a la ImageView
         }
 
         public void bind(final CourseItem courseItem, final OnItemClickListener listener) {
