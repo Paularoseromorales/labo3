@@ -25,10 +25,10 @@ public class CourseActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1; // Constante para seleccionar imágenes
     private static final int PICK_FILE_REQUEST = 2; // Constante para seleccionar archivos
 
-    private EditText courseNameText;
-    private EditText sigleCourseText;
-    private EditText teacherName;
-    private EditText sessionText;
+    private TextView courseNameText;
+    private TextView sigleCourseText;
+    private TextView teacherName;
+    private TextView sessionText;
     private Button addCourseButton;
     private Button selectImageButton; // Botón para seleccionar imagen
     private Button selectFileButton; // Botón para seleccionar archivo
@@ -89,8 +89,14 @@ public class CourseActivity extends AppCompatActivity {
                     boolean success = db.insertCourses(new CourseItem(name, sigle, teacher, session), imageData, fileData);
                     if (success) {
                         Toast.makeText(getApplicationContext(), "Cours ajouté avec succès", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(), ListCoursFragment.class);
-                        startActivity(intent);
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+
+                        fragmentTransaction.replace(R.id.fragment_container, new ListCoursFragment());
+                        fragmentTransaction.addToBackStack(null);  // Si deseas que el usuario pueda volver atrás
+                        fragmentTransaction.commit();
+
                         finish(); // Termina la actividad si la inserción fue exitosa
                     } else {
                         Toast.makeText(getApplicationContext(), "Erreur lors de l'insertion du cours...", Toast.LENGTH_LONG).show();
