@@ -104,13 +104,12 @@ import java.util.List;
                         tab.setIcon(R.drawable.mcours);
                         break;
                     case 2:
-                        tab.setText("Profil");
-                        tab.setIcon(R.drawable.ic_profile);
-
-                        break;
-                    case 3:
                         tab.setText("Inscrire");
                         tab.setIcon(R.drawable.ic_add);
+                        break;
+                    case 3:
+                        tab.setText("Profil");
+                        tab.setIcon(R.drawable.ic_profile);
                         break;
                 }
             })).attach();

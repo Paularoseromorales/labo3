@@ -133,6 +133,43 @@ public class ViewCoursActivity extends AppCompatActivity {
     }
 
     private void downloadFile(byte[] fileData, String fileName) {
-        // Tu código de descarga de archivo aquí
+        try {
+            // Verifica la versión de Android
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                // Para Android 10 (API 29) y superior, usar MediaStore para guardar en Downloads
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
+                values.put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf");
+                values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
+
+                Uri uri = getContentResolver().insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values);
+
+                if (uri != null) {
+                    OutputStream outputStream = getContentResolver().openOutputStream(uri);
+                    if (outputStream != null) {
+                        outputStream.write(fileData);
+                        outputStream.close();
+                        Toast.makeText(this, "Téléchargement réussi: " + fileName, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(this, "Erreur lors de la création du fichier.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            } else {
+                // Para Android 9 (API 28) y versiones anteriores, usar almacenamiento tradicional
+                File downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                if (!downloadDir.exists()) {
+                    downloadDir.mkdirs();
+                }
+                File file = new File(downloadDir, fileName);
+                FileOutputStream fos = new FileOutputStream(file);
+                fos.write(fileData);
+                fos.close();
+                Toast.makeText(this, "Téléchargement réussi: " + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            Log.e("File Download", "Error al descargar el archivo: " + e.getMessage());
+            e.printStackTrace();
+            Toast.makeText(this, "Erreur lors du téléchargement du fichier.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
