@@ -30,9 +30,9 @@ public class PageAdapter extends FragmentStateAdapter {
             case 1:
                 return new MesCoursFragment();
             case 2:
-                return new InscriptionFragment();
-            case 3:
                 return ProfilFragment.newInstance(user); // Pasar el User al ProfilFragment
+            case 3:
+                return new InscriptionFragment();
             default:
                 return new ListCoursFragment();
         }
@@ -40,7 +40,13 @@ public class PageAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4; // Número de pestañas
+        if (user != null && user.getId() == 1) {
+            // Retorna 3 pestañas, excluyendo la página 3
+            return 3;
+        } else {
+            // Retorna todas las pestañas (4 en total)
+            return 4;
+        }
     }
 
     @Override

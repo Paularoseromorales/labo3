@@ -61,7 +61,7 @@ import java.util.List;
                 CourseItem cours1 = new CourseItem(100, "Introduction à Java", "Cours de base pour apprendre Java", "Prof. Dupont", "Automne 2024", javaImage);
                 CourseItem cours2 = new CourseItem(101, "Développement Web ", "Apprentissage du développement web avec HTML et CSS", "Prof. Durand", "Automne 2024", webImage);
                 CourseItem cours3 = new CourseItem(102, "BD MySQL", "Cours pour comprendre les bases de données avec MySQL", "Prof. Lefebvre", "Automne 2024", mysqlImage);
-
+//                User admin = new User(1, "admin", "admin", "admin");
                 // Insertar los cursos en la base de datos con imágenes
                 dbHelper.insertCourses(cours1, javaImage, null);
                 dbHelper.insertCourses(cours2, webImage, null);
@@ -104,12 +104,13 @@ import java.util.List;
                         tab.setIcon(R.drawable.mcours);
                         break;
                     case 2:
-                        tab.setText("Inscrire");
-                        tab.setIcon(R.drawable.ic_add);
-                        break;
-                    case 3:
                         tab.setText("Profil");
                         tab.setIcon(R.drawable.ic_profile);
+
+                        break;
+                    case 3:
+                        tab.setText("Inscrire");
+                        tab.setIcon(R.drawable.ic_add);
                         break;
                 }
             })).attach();
