@@ -5,19 +5,16 @@
     android:background="#F0F0F0"
     android:gravity="center"
     android:backgroundTint="@color/blueclaro"
-    android:padding="16dp">
-
-    <include layout="@layout/toolbar"/>
+    android:padding="0dp">
 
 
-    <!-- Imagen de perfil -->
     <ImageView
         android:id="@+id/profile_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:src="@drawable/perfil"
-        android:layout_marginBottom="16dp"/>
+        android:layout_margin="40dp"/>
 
 
     <!-- Nombre del usuario -->
