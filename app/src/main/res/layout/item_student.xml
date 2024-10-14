@@ -22,7 +22,7 @@
             android:textColor="#000000" />
 
         <ImageButton
-            android:id="@+id/image_button_action"
+            android:id="@+id/remove_student"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_delete_24"
