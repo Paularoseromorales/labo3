@@ -14,8 +14,8 @@
     <string name="hint_enseignant">Saisissez le nom de l\'enseignant</string>
     <string name="debut_fin">Debut - Fin :</string>
     <string name="hint_debut_fin">Saisissez la Date debut-fin</string>
-    <string name="select_image">Sélectionner Image</string>
-    <string name="add_file">Adjouter un fichier</string>
+    <string name="select_image">Add Image</string>
+    <string name="add_file">Add fichier</string>
     <string name="no_image_selected">Aucune image sélectionnée</string>
     <string name="no_file_selected">Aucun fichier sélectionné</string>
     <string name="add_course">Ajouter Cours</string>
@@ -51,6 +51,10 @@
     <string name="inscription_titre">Inscription au cours</string>
     <string name="selectionner_cours">Sélectionnez un cours</string>
     <string name="inscrire_button">S\'inscrire</string>
+    <string name="msj">Messages</string>
+    <string name="mail">Mail</string>
+    <string name="logout">Log out </string>
+    <string name="devoir">Devoirs </string>
 
 
     <!--    &lt;!&ndash; TODO: Remove or change this placeholder text &ndash;&gt;-->
