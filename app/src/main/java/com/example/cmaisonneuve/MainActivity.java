@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                       tab.setIcon(R.drawable.quiz);
                       break;
                   case 2:
-                      tab.setText("C disponi");
+                      tab.setText("Inscrire");
                       tab.setIcon(R.drawable.ic_add);
                       break;
                   case 3:

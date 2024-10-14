@@ -51,7 +51,7 @@ public class TakeQuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int score = calculateScore(); // Calcula el puntaje del quiz
-                Toast.makeText(TakeQuizActivity.this, "Tu puntaje es: " + score + "/3", Toast.LENGTH_LONG).show();
+                Toast.makeText(TakeQuizActivity.this, "Votre score est : " + score + "/3", Toast.LENGTH_LONG).show();
             }
         });
     }

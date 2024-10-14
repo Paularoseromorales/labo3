@@ -1,7 +1,5 @@
 package com.example.cmaisonneuve;
 
-
-
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -62,9 +60,6 @@ public class ViewCoursActivity extends AppCompatActivity {
         etudiantsList = findViewById(R.id.list_students);
 
 
-
-
-
         // Inicializa el helper de la base de datos
         dbHelper = new DatabaseHelper(this);
 
@@ -118,17 +113,17 @@ public class ViewCoursActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
             imageCours.setImageBitmap(bitmap); // Muestra la imagen en el ImageView
         } else {
-            Toast.makeText(this, "Imagen no disponible", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Image non disponible", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void loadCourseFile(int courseId) {
         byte[] fileData = dbHelper.getCourseFile(courseId); // Recupera el archivo desde la base de datos
         if (fileData != null) {
-            Log.d("File Size", "Tamaño del archivo: " + fileData.length + " bytes");
+            Log.d("File Size", "Taille du fichier: " + fileData.length + " bytes");
             downloadFile(fileData, "document.pdf"); // Descarga el archivo como "document.pdf"
         } else {
-            Toast.makeText(this, "Archivo no disponible", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Fichier non disponible", Toast.LENGTH_SHORT).show();
         }
     }
 
