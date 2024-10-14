@@ -6,114 +6,121 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout  android:id="@+id/main"
+    <RelativeLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".CourseActivity">
 
         <ImageView
             android:id="@+id/logoMaisonneuve"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:src="@drawable/logoazul"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="40dp"/>
 
+        <!-- Título del curso -->
         <TextView
+            android:id="@+id/textView_nomcours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nom du Cours :"
-            android:layout_below="@+id/logoMaisonneuve"
-            android:layout_alignParentStart="true"
+            android:layout_below="@id/logoMaisonneuve"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="1dp"
             android:textSize="16sp"
             android:textStyle="bold"/>
 
+        <!-- Campo de entrada para el nombre del curso -->
         <EditText
             android:id="@+id/nomcourstext"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Saisissez le nom du cours"
-            android:layout_below="@id/logoMaisonneuve"
+            android:layout_below="@id/textView_nomcours"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/edittext_background"
             android:padding="16dp"/>
 
-
+        <!-- Título para la descripción -->
         <TextView
+            android:id="@+id/textView_siglecours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="description  :"
-            android:layout_below="@+id/nomcourstext"
-            android:layout_alignParentStart="true"
+            android:text="Description :"
+            android:layout_below="@id/nomcourstext"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:textSize="16sp"
             android:textStyle="bold"/>
 
+        <!-- Campo de entrada para la descripción del curso -->
         <EditText
             android:id="@+id/siglecourstext"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Saisissez sigle du cours"
-            android:layout_below="@id/nomcourstext"
+            android:hint="Saisissez la description du cours"
+            android:layout_below="@id/textView_siglecours"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="20dp"
-            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
             android:background="@drawable/edittext_background"
             android:padding="16dp"/>
 
+        <!-- Título para el nombre del instructor -->
         <TextView
+            android:id="@+id/textView_enseignant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enseignant:"
-            android:layout_below="@+id/siglecourstext"
-            android:layout_alignParentStart="true"
+            android:text="Enseignant :"
+            android:layout_below="@id/siglecourstext"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:textSize="16sp"
             android:textStyle="bold"/>
 
+        <!-- Campo de entrada para el nombre del instructor -->
         <EditText
             android:id="@+id/enseignanttext"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Saisissez le de l'enseignant"
-            android:layout_below="@id/siglecourstext"
+            android:hint="Saisissez le nom de l'enseignant"
+            android:layout_below="@id/textView_enseignant"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="20dp"
-            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
             android:background="@drawable/edittext_background"
             android:padding="16dp"/>
 
-
+        <!-- Título para la fecha de inicio y fin -->
         <TextView
+            android:id="@+id/textView_sessioncours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="date debut -date fin :"
-            android:layout_below="@+id/enseignanttext"
-            android:layout_alignParentStart="true"
+            android:text="Date Debut - Date Fin :"
+            android:layout_below="@id/enseignanttext"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:textSize="16sp"
             android:textStyle="bold"/>
 
+        <!-- Campo de entrada para la sesión del curso -->
         <EditText
             android:id="@+id/sessioncours"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Saisissez la session du cours"
-            android:layout_below="@id/enseignanttext"
+            android:layout_below="@id/textView_sessioncours"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="20dp"
-            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
             android:background="@drawable/edittext_background"
             android:padding="16dp"/>
 
-
+        <!-- Botón para modificar el curso -->
         <Button
             android:id="@+id/updateCourse"
             android:layout_width="wrap_content"
@@ -121,7 +128,7 @@
             android:text="Modifier Cours"
             android:backgroundTint="@color/blue"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/sessioncours"/>
+            android:layout_below="@id/sessioncours"
+            android:layout_marginTop="20dp"/>
     </RelativeLayout>
-
 </ScrollView>
