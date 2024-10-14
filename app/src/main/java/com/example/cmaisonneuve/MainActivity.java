@@ -1,7 +1,10 @@
 package com.example.cmaisonneuve;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -21,117 +24,142 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
-  private ViewPager2 viewPager;
-  private TabLayout tabLayout;
-    private ActivityResultLauncher<Intent> editCourseLauncher;
+    public class MainActivity extends AppCompatActivity {
+
+        private ViewPager2 viewPager;
+        private TabLayout tabLayout;
+        private ActivityResultLauncher<Intent> editCourseLauncher;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
 
-       // afficher la toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+            // Mostrar la toolbar
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-        // -- initialiser viewpager et tablayout
-          viewPager = findViewById(R.id.viewPager);
-          tabLayout = findViewById(R.id.tabLayout);
+            viewPager = findViewById(R.id.viewPager);
+            tabLayout = findViewById(R.id.tabLayout);
 
-          editCourseLauncher = registerForActivityResult(
-                  new ActivityResultContracts.StartActivityForResult(),
-                  result -> {
-                      if(result.getResultCode() == RESULT_OK){
-                          PageAdapter adapter = (PageAdapter) viewPager.getAdapter();
-                          ListCoursFragment fragment = (ListCoursFragment)adapter.getFragment(0);
-                        //  fragment.loadCoursesFromDatabase();
-                      }
-                  }
-          );
+            DatabaseHelper dbHelper = new DatabaseHelper(this);
 
-       //--- Configurer notre adapter
+            // Verificar si los cursos ya están creados
+            if (!dbHelper.areCoursesAlreadyCreated()) {
+                // Obtener las imágenes predeterminadas desde drawable
+                byte[] javaImage = getImageFromDrawable(R.drawable.java_image);
+                byte[] webImage = getImageFromDrawable(R.drawable.web_image);
+                byte[] mysqlImage = getImageFromDrawable(R.drawable.mysql_image);
 
-        Intent intent = getIntent();
-        User user = (User) intent.getSerializableExtra("user");
-//
-        PageAdapter pageAdapter = new PageAdapter(this, user);
-        viewPager.setAdapter(pageAdapter);
+                // Crear tres cursos con imágenes predeterminadas
+                CourseItem cours1 = new CourseItem(100, "Introduction à Java", "Cours de base pour apprendre Java", "Prof. Dupont", "Automne 2024", javaImage);
+                CourseItem cours2 = new CourseItem(101, "Développement Web ", "Apprentissage du développement web avec HTML et CSS", "Prof. Durand", "Automne 2024", webImage);
+                CourseItem cours3 = new CourseItem(102, "BD MySQL", "Cours pour comprendre les bases de données avec MySQL", "Prof. Lefebvre", "Automne 2024", mysqlImage);
 
-        
-        // Lier mon viewpager avec le tablayout
-        new TabLayoutMediator(tabLayout, viewPager, ((tab, position) -> {
-              switch (position){
-                  case 0:
-                      tab.setText("Liste Cours");
-                      tab.setIcon(R.drawable.ic_lesson);
-                      break;
-                  case 1:
-                      tab.setText("Mes Cours");
-                      tab.setIcon(R.drawable.quiz);
-                      break;
-                  case 2:
-                      tab.setText("C disponi");
-                      tab.setIcon(R.drawable.ic_add);
-                      break;
-                  case 3:
-                      tab.setText("Profil");
-                      tab.setIcon(R.drawable.ic_profile);
-                      break;
+                // Insertar los cursos en la base de datos con imágenes
+                dbHelper.insertCourses(cours1, javaImage, null);
+                dbHelper.insertCourses(cours2, webImage, null);
+                dbHelper.insertCourses(cours3, mysqlImage, null);
 
-              }
-        })).attach();
+                // Log de verificación
+                Log.d("DatabaseHelper", "Cursos con imágenes insertados con éxito.");
+            } else {
+                // Ya están creados los cursos
+                Log.d("DatabaseHelper", "Los cursos ya existen, no se volverán a crear.");
+            }
 
-    }
+            // Configurar el ViewPager y TabLayout
+            editCourseLauncher = registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == RESULT_OK) {
+                            PageAdapter adapter = (PageAdapter) viewPager.getAdapter();
+                            ListCoursFragment fragment = (ListCoursFragment) adapter.getFragment(0);
+                            // fragment.loadCoursesFromDatabase();
+                        }
+                    }
+            );
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_items, menu);
+            Intent intent = getIntent();
+            User user = (User) intent.getSerializableExtra("user");
 
-        // Obtener el ID del usuario actual desde el Intent
-        Intent intent = getIntent();
-        User user = (User) intent.getSerializableExtra("user");
+            PageAdapter pageAdapter = new PageAdapter(this, user);
+            viewPager.setAdapter(pageAdapter);
 
-        // Verificar si el usuario tiene ID 1
-        MenuItem addCourseItem = menu.findItem(R.id.action_add_course);
-
-        if (user != null && user.getId() == 1) {
-            // Mostrar el ítem de añadir curso solo para el usuario con ID = 1
-            addCourseItem.setVisible(true);
-
-        } else {
-            // Ocultar el ítem para otros usuarios
-            addCourseItem.setVisible(false);
+            // Ligar el ViewPager con el TabLayout
+            new TabLayoutMediator(tabLayout, viewPager, ((tab, position) -> {
+                switch (position) {
+                    case 0:
+                        tab.setText("Liste Cours");
+                        tab.setIcon(R.drawable.ic_lesson);
+                        break;
+                    case 1:
+                        tab.setText("Mes Cours");
+                        tab.setIcon(R.drawable.quiz);
+                        break;
+                    case 2:
+                        tab.setText("Inscrire");
+                        tab.setIcon(R.drawable.ic_add);
+                        break;
+                    case 3:
+                        tab.setText("Profil");
+                        tab.setIcon(R.drawable.ic_profile);
+                        break;
+                }
+            })).attach();
         }
 
-        return true;
-    }
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.menu_items, menu);
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
+            // Obtener el ID del usuario actual desde el Intent
+            Intent intent = getIntent();
+            User user = (User) intent.getSerializableExtra("user");
 
+            // Verificar si el usuario tiene ID 1
+            MenuItem addCourseItem = menu.findItem(R.id.action_add_course);
 
-         if(id == R.id.action_logout){
-             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-             startActivity(intent);
-         }
+            if (user != null && user.getId() == 1) {
+                // Mostrar el ítem de añadir curso solo para el usuario con ID = 1
+                addCourseItem.setVisible(true);
+            } else {
+                // Ocultar el ítem para otros usuarios
+                addCourseItem.setVisible(false);
+            }
 
-        if(id == R.id.action_add_course){
-            Intent intent = new Intent(MainActivity.this, CourseActivity.class);
-            startActivity(intent);
+            return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        @Override
+        public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+            int id = item.getItemId();
+
+            if (id == R.id.action_logout) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+
+            if (id == R.id.action_add_course) {
+                Intent intent = new Intent(MainActivity.this, CourseActivity.class);
+                startActivity(intent);
+            }
+
+            return super.onOptionsItemSelected(item);
+        }
+
+        // Método para convertir la imagen desde Drawable a byte[]
+        private byte[] getImageFromDrawable(int drawableId) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawableId);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            return stream.toByteArray();
+        }
+
     }
-    
-    
-    public ActivityResultLauncher<Intent> getEditCourseLauncher(){
-        return editCourseLauncher;
-    }
-}

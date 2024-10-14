@@ -55,6 +55,9 @@
     <string name="mail">Mail</string>
     <string name="logout">Log out </string>
     <string name="devoir">Devoirs </string>
+    <string name="Mcours">Mes Cours </string>
+    <string name="lcours">Liste de Cours </string>
+
 
 
     <!--    &lt;!&ndash; TODO: Remove or change this placeholder text &ndash;&gt;-->

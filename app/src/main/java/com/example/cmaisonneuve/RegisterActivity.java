@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if(success) {
                         Toast.makeText(getApplicationContext(), "Utilisateur cree avec sucess..", Toast.LENGTH_LONG).show();
                         finish();
-                        // naviguer vers la vue login
+
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);
                     } else {

@@ -26,6 +26,14 @@ public class CourseItem {
         this.session = session;
     }
 
+    public CourseItem(int id, String courseName, String sigle, String teacherName, String session, byte[] image) {
+        this.id = id;
+        this.courseName = courseName;
+        this.sigle = sigle;
+        this.teacherName = teacherName;
+        this.session = session;
+        this.image = image;
+    }
     // Getters y Setters
     public int getId() {
         return id;

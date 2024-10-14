@@ -21,7 +21,8 @@ public class StudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
-        // Verificar que el courseId se pase correctamente
+
+
         Intent intent = getIntent();
         int currentUserId = intent.getIntExtra("current_user_id", -1);  // Recibe la ID del usuario
         int courseId = intent.getIntExtra("course_id", -1);
@@ -32,12 +33,12 @@ public class StudentActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
         studentNameTextView = findViewById(R.id.student_name);
 
-        // Cargar los estudiantes inscritos en el curso desde la base de datos
+        // Cargar los estudiantes inscritos en el curso desde No se pudo cargar estudiantesla base de datos
         if (courseId != -1) {
             loadStudentsForCourse(courseId);
         } else {
-            Log.e("StudentActivity", "Error: courseId no válido");
-            studentNameTextView.setText("No se pudo cargar estudiantes.");
+            Log.e("StudentActivity", "Erreur : ID de cours invalide");
+            studentNameTextView.setText("Impossible de charger les étudiants.");
         }
     }
 
@@ -56,8 +57,8 @@ public class StudentActivity extends AppCompatActivity {
             studentNameTextView.setText(studentsList.toString());
             cursor.close();
         } else {
-            studentNameTextView.setText("No se encontraron estudiantes");
-            Log.d("StudentActivity", "No se encontraron estudiantes para el curso con ID: " + courseId);
+            studentNameTextView.setText("Aucun étudiant trouvé");
+            Log.d("StudentActivity", "Aucun étudiant trouvé pour le cours avec ID : " + courseId);
         }
     }
 }

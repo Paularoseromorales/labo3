@@ -35,7 +35,7 @@ public class CreateQuizActivity extends AppCompatActivity {
         // Recupera el courseId pasado desde la actividad anterior
         courseId = getIntent().getIntExtra("course_id", -1);
         if (courseId == -1) {
-            Toast.makeText(this, "Error: No se pudo obtener el ID del curso", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Erreur Impossible d'obtenir l'ID du cours", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
@@ -92,7 +92,7 @@ public class CreateQuizActivity extends AppCompatActivity {
 
         // Validación básica
         if (question1.isEmpty() || question2.isEmpty() || question3.isEmpty()) {
-            Toast.makeText(this, "Por favor, completa todas las preguntas", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Veuillez répondre à toutes les questions", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -103,10 +103,10 @@ public class CreateQuizActivity extends AppCompatActivity {
                 question3, option3_1, option3_2, option3_3, correctAnswer3);
 
         if (isInserted) {
-            Toast.makeText(this, "Quiz guardado exitosamente", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Quiz enregistré avec succès", Toast.LENGTH_SHORT).show();
             finish(); // Termina la actividad y regresa a la anterior
         } else {
-            Toast.makeText(this, "Error al guardar el quiz", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Erreur lors de l'enregistrement du quiz", Toast.LENGTH_SHORT).show();
         }
     }
     private int getSelectedAnswerIndex(RadioGroup radioGroup) {
