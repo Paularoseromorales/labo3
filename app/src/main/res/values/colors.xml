@@ -12,4 +12,6 @@
     <color name="blue">#1976D2</color>
     <color name="gray1">#808080</color>
     <color name="blueclaro">#1A1976D2</color>
+    <color name="backcard">#EEEEEE</color>
+
 </resources>

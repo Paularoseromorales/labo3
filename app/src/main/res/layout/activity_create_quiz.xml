@@ -5,16 +5,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="20dp">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <include layout="@layout/toolbar"/>
+
 
         <!-- Título del Quiz -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Créer Quiz"
+            android:text="@string/creer_quiz"
             android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="@color/blue"
@@ -36,11 +40,11 @@
                 android:orientation="vertical"
                 android:padding="8dp">
 
-                <!-- Título Pregunta 1 -->
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pregunta 1"
+                    android:text="@string/writeQ"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingBottom="8dp"/>
@@ -50,14 +54,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_background"
-                    android:hint="Escribe la pregunta"
+                    android:hint="@string/writeQ"
                     android:padding="16dp" />
 
                 <!-- Opción 1 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Opción 1"
+                    android:text="@string/option_1"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingTop="8dp"/>
@@ -67,14 +71,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_background"
-                    android:hint="Escribe la opción 1"
+                    android:hint="@string/write_option_1"
                     android:padding="16dp" />
 
                 <!-- Opción 2 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Opción 2"
+                    android:text="@string/option_2"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingTop="8dp"/>
@@ -84,14 +88,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_background"
-                    android:hint="Escribe la opción 2"
+                    android:hint="@string/write_option_2"
                     android:padding="16dp" />
 
                 <!-- Opción 3 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Opción 3"
+                    android:text="@string/option_3"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingTop="8dp"/>
@@ -101,14 +105,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_background"
-                    android:hint="Escribe la opción 3"
+                    android:hint="@string/write_option_3"
                     android:padding="16dp" />
 
                 <!-- Respuesta correcta -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Selecciona la respuesta correcta:"
+                    android:text="@string/choose"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingTop="8dp" />
@@ -123,19 +127,19 @@
                         android:id="@+id/option1CorrectQ1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Opción 1" />
+                        android:text="@string/option_1" />
 
                     <RadioButton
                         android:id="@+id/option2CorrectQ1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Opción 2" />
+                        android:text="@string/option_2" />
 
                     <RadioButton
                         android:id="@+id/option3CorrectQ1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Opción 3" />
+                        android:text="@string/option_3" />
                 </RadioGroup>
 
             </LinearLayout>
@@ -160,7 +164,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pregunta 2"
+                    android:text="@string/q_2"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingBottom="8dp"/>
@@ -170,14 +174,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_background"
-                    android:hint="Escribe la pregunta"
+                    android:hint="@string/writeQ"
                     android:padding="16dp" />
 
                 <!-- Opción 1 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Opción 1"
+                    android:text="@string/option_1"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingTop="8dp"/>
@@ -187,14 +191,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_background"
-                    android:hint="Escribe la opción 1"
+                    android:hint="@string/write_option_1"
                     android:padding="16dp" />
 
                 <!-- Opción 2 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Opción 2"
+                    android:text="@string/option_2"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingTop="8dp"/>
@@ -204,14 +208,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_background"
-                    android:hint="Escribe la opción 2"
+                    android:hint="@string/write_option_2"
                     android:padding="16dp" />
 
                 <!-- Opción 3 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Opción 3"
+                    android:text="@string/option_3"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingTop="8dp"/>
@@ -221,14 +225,14 @@
                     android:layout_width="match_parent"
                     android:background="@drawable/edittext_background"
                     android:layout_height="wrap_content"
-                    android:hint="Escribe la opción 3"
+                    android:hint="@string/write_option_3"
                     android:padding="16dp" />
 
                 <!-- Respuesta correcta -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Selecciona la respuesta correcta:"
+                    android:text="@string/choose"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingTop="8dp" />
@@ -243,19 +247,19 @@
                         android:id="@+id/option1CorrectQ2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Opción 1" />
+                        android:text="@string/option_1" />
 
                     <RadioButton
                         android:id="@+id/option2CorrectQ2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Opción 2" />
+                        android:text="@string/option_2" />
 
                     <RadioButton
                         android:id="@+id/option3CorrectQ2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Opción 3" />
+                        android:text="@string/option_3" />
                 </RadioGroup>
 
             </LinearLayout>
@@ -280,7 +284,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pregunta 3"
+                    android:text="@string/q_3"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingBottom="8dp"/>
@@ -290,14 +294,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_background"
-                    android:hint="Escribe la pregunta"
+                    android:hint="@string/writeQ"
                     android:padding="16dp" />
 
                 <!-- Opción 1 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Opción 1"
+                    android:text="@string/option_1"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingTop="8dp"/>
@@ -307,14 +311,14 @@
                     android:layout_width="match_parent"
                     android:background="@drawable/edittext_background"
                     android:layout_height="wrap_content"
-                    android:hint="Escribe la opción 1"
+                    android:hint="@string/write_option_1"
                     android:padding="16dp" />
 
                 <!-- Opción 2 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Opción 2"
+                    android:text="@string/q_2"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingTop="8dp"/>
@@ -324,14 +328,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_background"
-                    android:hint="Escribe la opción 2"
+                    android:hint="@string/write_option_2"
                     android:padding="16dp" />
 
                 <!-- Opción 3 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Opción 3"
+                    android:text="@string/q_3"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingTop="8dp"/>
@@ -341,14 +345,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_background"
-                    android:hint="Escribe la opción 3"
+                    android:hint="@string/write_option_3"
                     android:padding="16dp" />
 
                 <!-- Respuesta correcta -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Selecciona la respuesta correcta:"
+                    android:text="@string/choose"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:paddingTop="8dp" />
@@ -363,19 +367,19 @@
                         android:id="@+id/option1CorrectQ3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Opción 1" />
+                        android:text="@string/option_1" />
 
                     <RadioButton
                         android:id="@+id/option2CorrectQ3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Opción 2" />
+                        android:text="@string/option_2" />
 
                     <RadioButton
                         android:id="@+id/option3CorrectQ3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Opción 3" />
+                        android:text="@string/option_3" />
                 </RadioGroup>
 
             </LinearLayout>
@@ -386,7 +390,7 @@
             android:id="@+id/saveQuizButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Guarder Quiz"
+            android:text="@string/save_quiz"
             android:backgroundTint="@color/blue"
             android:layout_gravity="center" />
 

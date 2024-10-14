@@ -6,17 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <RelativeLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".CourseActivity">
 
+        <include layout="@layout/toolbar" />
+
         <ImageView
             android:id="@+id/logoMaisonneuve"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:src="@drawable/logoazul"
+            android:layout_below="@id/toolbar"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="40dp"/>
 
@@ -25,7 +30,7 @@
             android:id="@+id/textView_nomcours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nom du Cours :"
+            android:text="@string/titre"
             android:layout_below="@id/logoMaisonneuve"
             android:layout_marginStart="16dp"
             android:layout_marginTop="1dp"
@@ -37,7 +42,7 @@
             android:id="@+id/nomcourstext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Saisissez le nom du cours"
+            android:hint="@string/hint_titre"
             android:layout_below="@id/textView_nomcours"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
@@ -50,7 +55,7 @@
             android:id="@+id/textView_siglecours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description :"
+            android:text="@string/description"
             android:layout_below="@id/nomcourstext"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
@@ -62,7 +67,7 @@
             android:id="@+id/siglecourstext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Saisissez la description du cours"
+            android:hint="@string/hint_description"
             android:layout_below="@id/textView_siglecours"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
@@ -75,7 +80,7 @@
             android:id="@+id/textView_enseignant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enseignant :"
+            android:text="@string/enseignant"
             android:layout_below="@id/siglecourstext"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
@@ -87,7 +92,7 @@
             android:id="@+id/enseignanttext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Saisissez le nom de l'enseignant"
+            android:hint="@string/hint_enseignant"
             android:layout_below="@id/textView_enseignant"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
@@ -100,7 +105,7 @@
             android:id="@+id/textView_sessioncours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date Debut - Date Fin :"
+            android:text="@string/debut_fin"
             android:layout_below="@id/enseignanttext"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
@@ -112,7 +117,7 @@
             android:id="@+id/sessioncours"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Saisissez la session du cours"
+            android:hint="@string/hint_debut_fin"
             android:layout_below="@id/textView_sessioncours"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
@@ -125,7 +130,7 @@
             android:id="@+id/updateCourse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Modifier Cours"
+            android:text="@string/modifier_quiz"
             android:backgroundTint="@color/blue"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/sessioncours"

@@ -1,10 +1,59 @@
 <resources>
     <string name="app_name">cmaisonneuve</string>
+    <string name="nom_utilisateur_hint">Nom utilisateur</string>
+    <string name="mot_de_passe_hint">Mot de passe</string>
+    <string name="connexion_bouton">Connexion</string>
+    <string name="register_text">Pas de compte? S\'inscrire</string>
+    <string name="forgot_password_text">Mot de passe oublié?</string>
     <string name="fait_par">Fait par Paula Rosero et Felipe Acevedo</string>
+    <string name="titre">Titre</string>
+    <string name="hint_titre">Saisissez le titre du cours</string>
+    <string name="description">Description :</string>
+    <string name="hint_description">Saisissez la description du cours</string>
+    <string name="enseignant">Enseignant :</string>
+    <string name="hint_enseignant">Saisissez le nom de l\'enseignant</string>
+    <string name="debut_fin">Debut - Fin :</string>
+    <string name="hint_debut_fin">Saisissez la Date debut-fin</string>
+    <string name="select_image">Sélectionner Image</string>
+    <string name="add_file">Adjouter un fichier</string>
+    <string name="no_image_selected">Aucune image sélectionnée</string>
+    <string name="no_file_selected">Aucun fichier sélectionné</string>
+    <string name="add_course">Ajouter Cours</string>
+    <string name="creer_quiz">Créer Quiz</string>
+    <string name="q_1">Question 1</string>
+    <string name="writeQ">Écrivez la question</string>
+    <string name="option_1">Option 1</string>
+    <string name="write_option_1">Écrivez l\'option 1</string>
+    <string name="option_2">Option 2</string>
+    <string name="write_option_2">Écrivez l\'option 2</string>
+    <string name="option_3">Option 3</string>
+    <string name="write_option_3">Écrivez l\'option 3</string>
+    <string name="choose">Sélectionnez la réponse correcte :</string>
+    <string name="q_2">Question 2</string>
+    <string name="q_3">Question 3</string>
+    <string name="save_quiz">Enregistrer le quiz</string>
+    <string name="modifier_quiz">Modifier le quiz</string>
+    <string name="education">EDUCATION</string>
+    <string name="mobileapp">Mobile App</string>
+    <string name="started">GET STARTED</string>
+    <string name="complet">Nom complet</string>
+    <string name="nomutilisateur">Nom Utilizateur</string>
+    <string name="compte">Creer compte</string>
+    <string name="motoublie">Mot de passe oublié?</string>
+    <string name="deja">Deja membre? Se connecter</string>
+    <string name="reinitia">Reinitialiser le mot de passe</string>
+    <string name="quiz">QUIZ</string>
+    <string name="Envoyerquiz">Envoyer Quiz</string>
+    <string name="Documents">Documents</string>
+    <string name="btnEtudiants">Etudiants du cours</string>
+    <string name="modifier">Modifier</string>
+    <string name="suprimer">Suprimer</string>
+    <string name="inscription_titre">Inscription au cours</string>
+    <string name="selectionner_cours">Sélectionnez un cours</string>
+    <string name="inscrire_button">S\'inscrire</string>
 
 
-
-<!--    &lt;!&ndash; TODO: Remove or change this placeholder text &ndash;&gt;-->
+    <!--    &lt;!&ndash; TODO: Remove or change this placeholder text &ndash;&gt;-->
 <!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
 
 </resources>
