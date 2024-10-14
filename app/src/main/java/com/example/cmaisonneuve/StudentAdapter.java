@@ -1,5 +1,7 @@
 package com.example.cmaisonneuve;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +40,11 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
         String studentName = studentsList.get(position);
         holder.studentNameTextView.setText(studentName);
+        SharedPreferences preferences = holder.itemView.getContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+        int currentUserId = preferences.getInt("currentUserId", -1);
+        if (currentUserId == 1) {
+            holder.btnRemoveStudent.setVisibility(View.VISIBLE);
+        }
 
         // Configura el botón para eliminar el estudiante
         holder.btnRemoveStudent.setOnClickListener(v -> {

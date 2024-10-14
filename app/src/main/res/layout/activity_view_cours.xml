@@ -124,6 +124,7 @@
                 android:text="@string/btnEtudiants"
                 android:layout_marginEnd="20dp"
                 android:backgroundTint="@color/blue"
+                android:visibility="gone"
                 android:textColor="@android:color/white"/>
 
             <!-- Botón Take Quiz -->
@@ -134,6 +135,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/quiz"
                 android:backgroundTint="@color/blue"
+                android:visibility="gone"
                 android:textColor="@android:color/white"/>
 
         </LinearLayout>
