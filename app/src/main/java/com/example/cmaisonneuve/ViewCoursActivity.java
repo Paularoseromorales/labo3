@@ -70,6 +70,7 @@ public class ViewCoursActivity extends AppCompatActivity {
         String courseSigle = intent.getStringExtra("course_sigle");
         String courseTeacher = intent.getStringExtra("course_teacher");
         String courseSession = intent.getStringExtra("course_session");
+        int currentUserId = intent.getIntExtra("current_user_id", -1);  // Recibe la ID del usuario
 
         // Muestra los datos en los TextViews
         courseNameText.setText(courseName);
@@ -105,7 +106,16 @@ public class ViewCoursActivity extends AppCompatActivity {
             }
         });
 
+        etudiantsList.setOnClickListener(v -> {
+            Intent studentIntent = new Intent(ViewCoursActivity.this, StudentActivity.class);
+            studentIntent.putExtra("current_user_id", currentUserId);  // Pasar la ID del usuario actual
+            studentIntent.putExtra("course_id", courseId);  // Pasar la ID del curso actual
+            startActivity(studentIntent);
+        });
+
     }
+
+
 
     private void loadCourseImage(int courseId) {
         byte[] imageBytes = dbHelper.getCourseImage(courseId); // Recupera la imagen desde la base de datos

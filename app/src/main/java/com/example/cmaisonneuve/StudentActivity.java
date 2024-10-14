@@ -1,9 +1,11 @@
 package com.example.cmaisonneuve;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,9 +21,13 @@ public class StudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
-        // Verificar que el courseId se pase correctamente
-        int courseId = getIntent().getIntExtra("COURSE_ID", -1);
-        Log.d("StudentActivity", "Id de cours reçu: " + courseId);
+
+
+        Intent intent = getIntent();
+        int currentUserId = intent.getIntExtra("current_user_id", -1);  // Recibe la ID del usuario
+        int courseId = intent.getIntExtra("course_id", -1);
+        Toast.makeText(this, "ID del usuario: " + currentUserId + ", ID del curso: " + courseId, Toast.LENGTH_LONG).show();
+
 
         // Inicializar la base de datos y los TextViews
         databaseHelper = new DatabaseHelper(this);

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -91,8 +92,14 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         holder.btnRemoveCourse.setOnClickListener(v -> deleteListener.onDeleteClick(courseItem.getId()));
 
         // Configurar el EditText para que funcione como el botón "ver curso"
+// Configurar el EditText para que funcione como el botón "ver curso"
         holder.titre.setOnClickListener(v -> {
             Context context = holder.itemView.getContext();
+
+            // Mostrar un Toast con el ID del usuario actual
+//            Toast.makeText(context, "ID del usuario actual: " + currentUserId, Toast.LENGTH_SHORT).show();
+
+            // Crear el Intent para pasar a la siguiente actividad
             Intent intent = new Intent(context, ViewCoursActivity.class);
             intent.putExtra("course_id", courseItem.getId());  // Pasar la ID del curso
             intent.putExtra("course_name", courseItem.getCourseName());
@@ -101,8 +108,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             intent.putExtra("course_session", courseItem.getSession());
             intent.putExtra("image", courseItem.getImage());  // Pasar imagen si es necesario
             intent.putExtra("fichier", courseItem.getFile());  // Pasar archivo si es necesario
+            intent.putExtra("current_user_id", currentUserId);  // Pasar la ID del usuario actual que ya obtuviste
             context.startActivity(intent);
         });
+
 
         // Vincula el clic del elemento con el listener general
         holder.bind(courseItem, listener);
