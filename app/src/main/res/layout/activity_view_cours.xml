@@ -132,7 +132,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:layout_marginTop="16dp"
-        android:contentDescription="@string/take_quiz_description"
+        android:contentDescription="@string/quiz"
         android:src="@drawable/takequiz"
         app:layout_constraintTop_toBottomOf="@id/enseignanttext"
         app:layout_constraintEnd_toEndOf="parent"/>
