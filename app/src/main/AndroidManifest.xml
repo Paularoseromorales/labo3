@@ -26,6 +26,9 @@
 
         <!-- Actividades -->
         <activity
+            android:name=".ListCoursFragment"
+            android:exported="false" />
+        <activity
             android:name=".TakeQuizActivity"
             android:exported="false" />
         <activity
