@@ -2,12 +2,15 @@ package com.example.cmaisonneuve;
 
 
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,12 +21,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.example.cmaisonneuve.db.DatabaseHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 public class ViewCoursActivity extends AppCompatActivity {
 
@@ -145,65 +151,52 @@ public class ViewCoursActivity extends AppCompatActivity {
     }
 
 
-
     private void downloadFile(byte[] fileData, String fileName) {
         try {
-            // Obtiene la carpeta "Downloads" en el almacenamiento externo
-            File downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+            // Verifica la versión de Android
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                // Para Android 10 (API 29) y superior, usar MediaStore para guardar en Downloads
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
+                values.put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf");
+                values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
 
-            // Verifica si el directorio Downloads existe, si no, lo crea
-            if (!downloadDir.exists()) {
-                if (!downloadDir.mkdirs()) {
-                    Log.e("File Download", "No se pudo acceder a la carpeta Downloads.");
-                    Toast.makeText(this, "Erreur lors de l'accès au dossier des téléchargements.", Toast.LENGTH_SHORT).show();
-                    return;
+                Uri uri = getContentResolver().insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values);
+
+                if (uri != null) {
+                    OutputStream outputStream = getContentResolver().openOutputStream(uri);
+                    if (outputStream != null) {
+                        outputStream.write(fileData);
+                        outputStream.close();
+                        Toast.makeText(this, "Téléchargement réussi: " + fileName, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(this, "Erreur lors de la création du fichier.", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-
-            // Crea el archivo en el directorio Downloads
-            File file = new File(downloadDir, fileName);
-
-            // Escribe los datos en el archivo
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(fileData);
-            fos.close();
-
-            // Verifica si el archivo existe y genera el log
-            if (file.exists()) {
-                Log.d("File Download", "Archivo guardado en: " + file.getAbsolutePath());
-                Toast.makeText(this, "Téléchargement réussi: " + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
-
-                // Refresca la carpeta de descargas para que el archivo sea visible
-                Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                Uri uri = Uri.fromFile(file);
-                scanIntent.setData(uri);
-                sendBroadcast(scanIntent);
-
-                // Abre automáticamente el archivo PDF después de la descarga
-                Intent openFileIntent = new Intent(Intent.ACTION_VIEW);
-                openFileIntent.setDataAndType(uri, "application/pdf");
-                openFileIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                openFileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                // Verifica si hay una aplicación disponible para abrir el archivo
-                if (openFileIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(openFileIntent);
-                } else {
-                    // Si no hay aplicaciones para abrir PDF, muestra un mensaje
-                    Toast.makeText(this, "No hay aplicaciones disponibles para abrir este archivo.", Toast.LENGTH_SHORT).show();
-                }
-
             } else {
-                Log.d("File Download", "No se pudo guardar el archivo.");
-                Toast.makeText(this, "Erreur lors de la sauvegarde du fichier.", Toast.LENGTH_SHORT).show();
+                // Para Android 9 (API 28) y versiones anteriores, usar almacenamiento tradicional
+                File downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                if (!downloadDir.exists()) {
+                    downloadDir.mkdirs();
+                }
+                File file = new File(downloadDir, fileName);
+                FileOutputStream fos = new FileOutputStream(file);
+                fos.write(fileData);
+                fos.close();
+                Toast.makeText(this, "Téléchargement réussi: " + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
             }
-
         } catch (Exception e) {
             Log.e("File Download", "Error al descargar el archivo: " + e.getMessage());
             e.printStackTrace();
             Toast.makeText(this, "Erreur lors du téléchargement du fichier.", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
+
+
+
 
 
 
