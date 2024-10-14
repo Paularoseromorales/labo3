@@ -54,8 +54,11 @@
     <string name="msj">Messages</string>
     <string name="mail">Mail</string>
     <string name="logout">Log out </string>
-    <string name="devoir">Devoirs </string>
+    <string name="note">Note </string>
     <string name="Mcours">Mes Cours </string>
+    <string name="etudiant">Étudiants </string>
+    <string name="devoir">Devoirs </string>
+    <string name="nometudiant">Nom étudiant </string>
     <string name="lcours">Liste de Cours </string>
 
 
