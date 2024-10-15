@@ -100,7 +100,7 @@ public class CreateQuizActivity extends AppCompatActivity {
 
         if (isInserted) {
             Toast.makeText(this, "Quiz enregistré avec succès", Toast.LENGTH_SHORT).show();
-            finish(); // Termina la actividad y regresa a la anterior
+            finish();
         } else {
             Toast.makeText(this, "Erreur lors de l'enregistrement du quiz", Toast.LENGTH_SHORT).show();
         }
