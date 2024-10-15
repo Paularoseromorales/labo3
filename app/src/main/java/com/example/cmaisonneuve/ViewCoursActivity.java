@@ -99,7 +99,9 @@ public class ViewCoursActivity extends AppCompatActivity {
         btntakequiz.setOnClickListener(v -> {
             Intent takeQuizIntent = new Intent(ViewCoursActivity.this, TakeQuizActivity.class);
             takeQuizIntent.putExtra("course_id", courseId);
+            startActivity(takeQuizIntent);  // Iniciar la actividad aquí
         });
+
 
         etudiantsList.setOnClickListener(v -> {
             Intent studentIntent = new Intent(ViewCoursActivity.this, StudentActivity.class);
