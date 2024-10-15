@@ -7,17 +7,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
-import android.widget.ListView;
+
 import com.example.cmaisonneuve.db.DatabaseHelper;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 import androidx.viewpager2.widget.ViewPager2;
 
 
@@ -25,8 +22,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.List;
+
 
 
     public class MainActivity extends AppCompatActivity {
@@ -41,9 +37,10 @@ import java.util.List;
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
 
-            // Mostrar la toolbar
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+
+            getSupportActionBar().setIcon(R.mipmap.logo);
 
             viewPager = findViewById(R.id.viewPager);
             tabLayout = findViewById(R.id.tabLayout);
