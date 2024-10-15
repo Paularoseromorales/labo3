@@ -47,7 +47,19 @@ public class TakeQuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int score = calculateScore();
-                Toast.makeText(TakeQuizActivity.this, "Votre score est : " + score + "/3", Toast.LENGTH_LONG).show();
+                String message;
+
+                if (score == 3) {
+                    message = "Félicitations ! Vous avez obtenu le score parfait : " + score + "/3";
+                } else if (score == 2) {
+                    message = "Bien joué ! Vous avez obtenu : " + score + "/3";
+                } else if (score == 1) {
+                    message = "Vous avez obtenu : " + score + "/3. Vous pouvez mieux faire !";
+                } else {
+                    message = "Dommage, vous n'avez obtenu aucun point. Réessayez !";
+                }
+
+                Toast.makeText(TakeQuizActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }
