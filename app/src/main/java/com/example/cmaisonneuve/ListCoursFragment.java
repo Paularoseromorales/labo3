@@ -77,15 +77,15 @@ public class ListCoursFragment extends Fragment {
         builder.setTitle("Confirmation de suppression");
         builder.setMessage("Vous êtes sûr de supprimer le cours : " + courseToDelete.getCourseName() + " ?");
 
-        // Configurar los botones "Oui" y "Non"
+
         builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Lógica para eliminar el curso
+
                 boolean success = db.deleteCourse(courseId);
                 if (success) {
                     Toast.makeText(getActivity(), "Cours supprimé avec succès", Toast.LENGTH_LONG).show();
-                    loadCoursesFromDatabase();  // Recargar la lista de cursos
+                    loadCoursesFromDatabase();
                 } else {
                     Toast.makeText(getActivity(), "Erreur lors de la suppression", Toast.LENGTH_LONG).show();
                 }
@@ -95,7 +95,7 @@ public class ListCoursFragment extends Fragment {
         builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Cerrar el diálogo sin hacer nada
+
                 dialog.dismiss();
             }
         });

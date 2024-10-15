@@ -56,7 +56,7 @@ public class InscriptionFragment extends Fragment {
                 int selectedCourseId = getCourseIdByName(selectedCourseName);
 
                 SharedPreferences preferences = getActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
-                int currentUserId = preferences.getInt("currentUserId", -1); // Obtener el userId guardado
+                int currentUserId = preferences.getInt("currentUserId", -1);
 
                 if (currentUserId == -1) {
                     Toast.makeText(getActivity(), "Error: Aucun utilisateur connecté.", Toast.LENGTH_LONG).show();
@@ -67,7 +67,7 @@ public class InscriptionFragment extends Fragment {
 
                 if (result) {
                     Toast.makeText(getActivity(), "Inscription réussie au cours: " + selectedCourseName, Toast.LENGTH_SHORT).show();
-                    loadCoursesToSpinner(); // Refrescar el spinner después de la inscripción
+                    loadCoursesToSpinner();
                 } else {
                     Toast.makeText(getActivity(), "Erreur lors de l'inscription.", Toast.LENGTH_SHORT).show();
                 }
