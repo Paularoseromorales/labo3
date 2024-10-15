@@ -21,18 +21,15 @@ public class CreateQuizActivity extends AppCompatActivity {
     private EditText option1Q3, option2Q3, option3Q3;
     private RadioGroup correctAnswerQ1, correctAnswerQ2, correctAnswerQ3;
     private Button saveQuizButton;
-    private int courseId; // ID del curso al que se asocia el quiz
-    private DatabaseHelper dbHelper; // Instancia del helper para acceder a la base de datos
-
+    private int courseId;
+    private DatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_quiz);
 
-        // Inicializa el helper de base de datos
         dbHelper = new DatabaseHelper(this);
 
-        // Recupera el courseId pasado desde la actividad anterior
         courseId = getIntent().getIntExtra("course_id", -1);
         if (courseId == -1) {
             Toast.makeText(this, "Erreur Impossible d'obtenir l'ID du cours", Toast.LENGTH_LONG).show();
@@ -40,7 +37,6 @@ public class CreateQuizActivity extends AppCompatActivity {
             return;
         }
 
-        // Inicializa los elementos del layout
         question1Text = findViewById(R.id.question1Text);
         option1Q1 = findViewById(R.id.option1Q1);
         option2Q1 = findViewById(R.id.option2Q1);
@@ -61,7 +57,7 @@ public class CreateQuizActivity extends AppCompatActivity {
 
         saveQuizButton = findViewById(R.id.saveQuizButton);
 
-        // Guarda el quiz cuando se hace clic en el botón
+
         saveQuizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +67,7 @@ public class CreateQuizActivity extends AppCompatActivity {
     }
 
     private void saveQuiz() {
-        // Recoge las preguntas y opciones
+
         String question1 = question1Text.getText().toString();
         String option1_1 = option1Q1.getText().toString();
         String option1_2 = option2Q1.getText().toString();
@@ -90,13 +86,13 @@ public class CreateQuizActivity extends AppCompatActivity {
         String option3_3 = option3Q3.getText().toString();
         int correctAnswer3 = getSelectedAnswer(correctAnswerQ3);
 
-        // Validación básica
+
         if (question1.isEmpty() || question2.isEmpty() || question3.isEmpty()) {
             Toast.makeText(this, "Veuillez répondre à toutes les questions", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Inserta el quiz en la base de datos utilizando el courseId recuperado
+
         boolean isInserted = dbHelper.insertQuiz(courseId,
                 question1, option1_1, option1_2, option1_3, correctAnswer1,
                 question2, option2_1, option2_2, option2_3, correctAnswer2,
@@ -113,18 +109,17 @@ public class CreateQuizActivity extends AppCompatActivity {
         int selectedId = radioGroup.getCheckedRadioButtonId();
         if (selectedId != -1) {
             RadioButton selectedRadioButton = findViewById(selectedId);
-            return radioGroup.indexOfChild(selectedRadioButton) + 1; // Devuelve el índice de la opción seleccionada (1, 2, o 3)
+            return radioGroup.indexOfChild(selectedRadioButton) + 1;
         }
-        return -1; // Devuelve -1 si no hay respuesta seleccionada
+        return -1;
     }
-
-    // Método para obtener la respuesta correcta seleccionada de un RadioGroup
+    // Méthode pour obtenir la réponse correcte sélectionnée d'un RadioGroup
     private int getSelectedAnswer(RadioGroup radioGroup) {
         int selectedId = radioGroup.getCheckedRadioButtonId();
         if (selectedId != -1) {
             RadioButton selectedRadioButton = findViewById(selectedId);
             return radioGroup.indexOfChild(selectedRadioButton) + 1; // Devuelve el índice de la opción seleccionada (1, 2, o 3)
         }
-        return -1; // Devuelve -1 si no hay respuesta seleccionada
+        return -1;
     }
 }

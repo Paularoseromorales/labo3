@@ -50,13 +50,13 @@ public class CourseActivity extends AppCompatActivity {
         teacherName = findViewById(R.id.enseignanttext);
         sessionText = findViewById(R.id.sessioncours);
         addCourseButton = findViewById(R.id.addcourse);
-        selectImageButton = findViewById(R.id.selectImageButton); // Botón para seleccionar la imagen
-        selectFileButton = findViewById(R.id.selectFileButton); // Botón para seleccionar el archivo
-        imageNameTextView = findViewById(R.id.imageNameTextView); // TextView para mostrar el nombre de la imagen
-        fileNameTextView = findViewById(R.id.fileNameTextView); // TextView para mostrar el nombre del archivo
+        selectImageButton = findViewById(R.id.selectImageButton);
+        selectFileButton = findViewById(R.id.selectFileButton);
+        imageNameTextView = findViewById(R.id.imageNameTextView);
+        fileNameTextView = findViewById(R.id.fileNameTextView);
         db = new DatabaseHelper(this);
 
-        // Botón para seleccionar imagen
+
         selectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +64,6 @@ public class CourseActivity extends AppCompatActivity {
             }
         });
 
-        // Botón para seleccionar archivo
         selectFileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +75,7 @@ public class CourseActivity extends AppCompatActivity {
         addCourseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Recolectar datos del formulario
+
                 String name = courseNameText.getText().toString();
                 String sigle = sigleCourseText.getText().toString();
                 String teacher = teacherName.getText().toString();
@@ -85,7 +84,7 @@ public class CourseActivity extends AppCompatActivity {
                 if (name.isEmpty() || sigle.isEmpty() || teacher.isEmpty() || session.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "SVP remplissez tous les champs", Toast.LENGTH_LONG).show();
                 } else {
-                    // Llama a insertCourses pasando los datos de imagen y archivo
+
                     boolean success = db.insertCourses(new CourseItem(name, sigle, teacher, session), imageData, fileData);
                     if (success) {
                         Toast.makeText(getApplicationContext(), "Cours ajouté avec succès", Toast.LENGTH_LONG).show();
@@ -94,10 +93,10 @@ public class CourseActivity extends AppCompatActivity {
 
 
                         fragmentTransaction.replace(R.id.fragment_container, new ListCoursFragment());
-                        fragmentTransaction.addToBackStack(null);  // Si deseas que el usuario pueda volver atrás
+                        fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
 
-                        finish(); // Termina la actividad si la inserción fue exitosa
+                        finish();
                     } else {
                         Toast.makeText(getApplicationContext(), "Erreur lors de l'insertion du cours...", Toast.LENGTH_LONG).show();
                     }
@@ -108,23 +107,25 @@ public class CourseActivity extends AppCompatActivity {
 
     }
 
-    // Método para abrir el selector de imágenes
+
+    // Méthode pour ouvrir le sélecteur d'image
     private void openImageChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Seleccionar Imagen"), PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Sélectionnez une image"), PICK_IMAGE_REQUEST);
     }
 
-    // Método para abrir el selector de archivos
+
+    // Méthode pour ouvrir le sélecteur de fichiers
     private void openFileChooser() {
         Intent intent = new Intent();
-        intent.setType("*/*"); // Permite seleccionar cualquier tipo de archivo
+        intent.setType("*/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Seleccionar Archivo"), PICK_FILE_REQUEST);
     }
 
-    // Manejar el resultado de las selecciones
+    // Gérer le résultat des sélections
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -133,9 +134,9 @@ public class CourseActivity extends AppCompatActivity {
             Uri imageUri = data.getData();
             try {
                 imageData = getBytesFromUri(imageUri);
-                // Mostrar el nombre del archivo seleccionado
-                String imageName = imageUri.getLastPathSegment(); // Obtiene el nombre del archivo
-                imageNameTextView.setText(imageName != null ? imageName : "Imagen no disponible"); // Actualiza el TextView con el nombre de la imagen
+
+                String imageName = imageUri.getLastPathSegment();
+                imageNameTextView.setText(imageName != null ? imageName : "Imagen no disponible");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -143,16 +144,16 @@ public class CourseActivity extends AppCompatActivity {
             Uri fileUri = data.getData();
             try {
                 fileData = getBytesFromUri(fileUri);
-                // Mostrar el nombre del archivo seleccionado
-                String fileName = fileUri.getLastPathSegment(); // Obtiene el nombre del archivo
-                fileNameTextView.setText(fileName != null ? fileName : "Archivo no disponible"); // Actualiza el TextView con el nombre del archivo
+
+                String fileName = fileUri.getLastPathSegment();
+                fileNameTextView.setText(fileName != null ? fileName : "Fichier non disponible");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    // Método para convertir un Uri a byte[]
+    // Méthode pour convertir un Uri en octet[]
     private byte[] getBytesFromUri(Uri uri) throws IOException {
         InputStream inputStream = getContentResolver().openInputStream(uri);
         ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
@@ -161,6 +162,6 @@ public class CourseActivity extends AppCompatActivity {
         while ((len = inputStream.read(buffer)) != -1) {
             byteBuffer.write(buffer, 0, len);
         }
-        return byteBuffer.toByteArray(); // Devuelve el contenido como byte[]
+        return byteBuffer.toByteArray();
     }
 }

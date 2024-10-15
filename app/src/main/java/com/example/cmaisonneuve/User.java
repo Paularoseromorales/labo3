@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    private int id; // Campo para el ID del usuario
+    private int id;
     private String fullname;
     private String username;
     private String password;

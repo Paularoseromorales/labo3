@@ -22,7 +22,7 @@ public class StudentActivity extends AppCompatActivity {
     private DatabaseHelper databaseHelper;
     private RecyclerView recyclerViewStudents;
     private StudentAdapter studentAdapter;
-    private List<String> studentsList = new ArrayList<>();  // Podrías cambiar esta lista para almacenar objetos Student con más información
+    private List<String> studentsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class StudentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student);
 
         Intent intent = getIntent();
-        int currentUserId = intent.getIntExtra("current_user_id", -1);  // Recibe la ID del usuario
+        int currentUserId = intent.getIntExtra("current_user_id", -1);
         int courseId = intent.getIntExtra("course_id", -1);
 
         if (currentUserId == -1 || courseId == -1) {
@@ -40,33 +40,31 @@ public class StudentActivity extends AppCompatActivity {
 
         Toast.makeText(this, "ID del usuario: " + currentUserId + ", ID del curso: " + courseId, Toast.LENGTH_LONG).show();
 
-        // Inicializar la base de datos
+
         databaseHelper = new DatabaseHelper(this);
 
-        // Cargar los estudiantes inscritos en el curso desde la base de datos
+
         loadStudentsForCourse(courseId);
 
-        // Inicializar el RecyclerView
         recyclerViewStudents = findViewById(R.id.recycler_view_students);
         recyclerViewStudents.setLayoutManager(new LinearLayoutManager(this));
 
-        // Inicializar el StudentAdapter y configurarlo con el RecyclerView
         studentAdapter = new StudentAdapter(studentsList, databaseHelper, courseId);
         recyclerViewStudents.setAdapter(studentAdapter);
     }
 
     private void loadStudentsForCourse(int courseId) {
-        Cursor cursor = databaseHelper.getUsersForCourse(courseId);  // Obtener estudiantes inscritos
+        Cursor cursor = databaseHelper.getUsersForCourse(courseId);
 
         if (cursor != null && cursor.moveToFirst()) {
-            studentsList.clear();  // Limpiar la lista antes de agregar nuevos datos
+            studentsList.clear();
             do {
-                // Obtener el nombre del estudiante (posiblemente necesitas más datos, como el userId)
+
                 String studentName = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_USER_FULL_NAME));
-                studentsList.add(studentName);  // Añadir el nombre a la lista
+                studentsList.add(studentName);
             } while (cursor.moveToNext());
 
-            // Notificar al adaptador que los datos han cambiado, solo si el adaptador ya fue inicializado
+
             if (studentAdapter != null) {
                 studentAdapter.notifyDataSetChanged();
             }
