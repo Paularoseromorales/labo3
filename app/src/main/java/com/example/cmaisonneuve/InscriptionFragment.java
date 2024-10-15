@@ -35,35 +35,26 @@ public class InscriptionFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inscription, container, false);
 
-        // Referencias a las vistas
+
         spinnerCours = view.findViewById(R.id.spinner_courses);
         inscriptionButton = view.findViewById(R.id.inscriptionButton);
 
-        // Inicializar la base de datos
         databaseHelper = new DatabaseHelper(getActivity());
 
-
-        // Método para cargar la lista de cursos y actualizar el spinner
         loadCoursesToSpinner();
 
-        // Obtener la lista de nombres de cursos desde la base de datos
         List<String> listCours = databaseHelper.getAllCourseNames();
 
-        // Crear el adaptador para el spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, listCours);
-        // Definir el layout para los elementos del spinner
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCours.setAdapter(adapter);
 
-        // Manejar el clic en el botón de inscripción
         inscriptionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Obtener el curso seleccionado
                 String selectedCourseName = spinnerCours.getSelectedItem().toString();
                 int selectedCourseId = getCourseIdByName(selectedCourseName); // Obtener el ID del curso
 
-                // Obtener el ID del usuario actual desde SharedPreferences
                 SharedPreferences preferences = getActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
                 int currentUserId = preferences.getInt("currentUserId", -1); // Obtener el userId guardado
 
@@ -72,7 +63,6 @@ public class InscriptionFragment extends Fragment {
                     return;
                 }
 
-                // Agregar la inscripción del usuario a la base de datos
                 boolean result = databaseHelper.insertUserCourse(currentUserId, selectedCourseId, "Note: N/A"); // Nota por defecto
 
                 if (result) {
@@ -84,9 +74,7 @@ public class InscriptionFragment extends Fragment {
             }
         });
 
-        // Configurar el listener para verificar si hay nuevos cursos cuando se interactúa con el spinner
         spinnerCours.setOnTouchListener((v, event) -> {
-            // Refrescar los cursos cada vez que se toca el spinner
             loadCoursesToSpinner();
             return false;
         });
@@ -94,16 +82,14 @@ public class InscriptionFragment extends Fragment {
         return view;
     }
 
-    // Método para cargar los cursos en el Spinner
+    // Méthode pour charger les cours dans le Spinner
     private void loadCoursesToSpinner() {
-        // Obtener la lista de nombres de cursos actualizados desde la base de datos
         List<String> listCours = databaseHelper.getAllCourseNames();
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, listCours);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCours.setAdapter(adapter);
     }
-
-    // Método para obtener el ID del curso por su nombre
+    // Méthode pour obtenir l'ID du cours par nom
     private int getCourseIdByName(String courseName) {
         HashMap<String, Integer> courseMap = databaseHelper.getAllCourseNamesWithIds();
         return courseMap.get(courseName);

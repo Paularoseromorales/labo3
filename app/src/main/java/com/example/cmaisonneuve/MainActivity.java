@@ -92,7 +92,7 @@ import java.util.List;
             PageAdapter pageAdapter = new PageAdapter(this, user);
             viewPager.setAdapter(pageAdapter);
 
-            // Ligar el ViewPager con el TabLayout
+            // Lier le ViewPager au TabLayout
             new TabLayoutMediator(tabLayout, viewPager, ((tab, position) -> {
                 switch (position) {
                     case 0:
@@ -119,18 +119,15 @@ import java.util.List;
         public boolean onCreateOptionsMenu(Menu menu) {
             getMenuInflater().inflate(R.menu.menu_items, menu);
 
-            // Obtener el ID del usuario actual desde el Intent
             Intent intent = getIntent();
             User user = (User) intent.getSerializableExtra("user");
 
-            // Verificar si el usuario tiene ID 1
+
             MenuItem addCourseItem = menu.findItem(R.id.action_add_course);
 
             if (user != null && user.getId() == 1) {
-                // Mostrar el ítem de añadir curso solo para el usuario con ID = 1
                 addCourseItem.setVisible(true);
             } else {
-                // Ocultar el ítem para otros usuarios
                 addCourseItem.setVisible(false);
             }
 
@@ -153,8 +150,7 @@ import java.util.List;
 
             return super.onOptionsItemSelected(item);
         }
-
-        // Método para convertir la imagen desde Drawable a byte[]
+        // Méthode pour convertir l'image de Drawable en octet[]
         private byte[] getImageFromDrawable(int drawableId) {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawableId);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();

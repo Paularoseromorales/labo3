@@ -13,9 +13,9 @@ import java.util.List;
 public class PageAdapter extends FragmentStateAdapter {
 
     private final SparseArray<Fragment> registeredFragments = new SparseArray<>();
-    private User user; // Agregar el objeto User
+    private User user;
 
-    // Modificar el constructor para recibir User
+
     public PageAdapter(@NonNull FragmentActivity fragmentActivity, User user) {
         super(fragmentActivity);
         this.user = user;
@@ -32,7 +32,7 @@ public class PageAdapter extends FragmentStateAdapter {
             case 2:
                 return new InscriptionFragment();
             case 3:
-                return ProfilFragment.newInstance(user); // Pasar el User al ProfilFragment
+                return ProfilFragment.newInstance(user);
             default:
                 return new ListCoursFragment();
         }
@@ -40,7 +40,7 @@ public class PageAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4; // Número de pestañas
+        return 4;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class PageAdapter extends FragmentStateAdapter {
         registeredFragments.put(position, getFragment(position));
     }
 
-    // Método para recuperar el fragmento que está visible
+    // Méthode pour récupérer le fragment visible
     public Fragment getFragment(int position) {
         return registeredFragments.get(position);
     }

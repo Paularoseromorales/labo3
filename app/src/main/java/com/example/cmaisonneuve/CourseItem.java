@@ -1,15 +1,15 @@
 package com.example.cmaisonneuve;
 
 public class CourseItem {
-    private int id; // ID del curso en la base de datos
-    private String courseName; // Nombre del curso
-    private String sigle; // Sigle del curso
-    private String teacherName; // Nombre del docente
-    private String session; // Sesión del curso
-    private byte[] image; // Datos de la imagen (BLOB)
-    private byte[] file; // Datos del archivo (BLOB)
+    private int id;
+    private String courseName;
+    private String sigle;
+    private String teacherName;
+    private String session;
+    private byte[] image;
+    private byte[] file;
 
-    // Constructor para crear un nuevo curso (sin ID)
+
     public CourseItem(String courseName, String sigle, String teacherName, String session) {
         this.courseName = courseName;
         this.sigle = sigle;
@@ -17,7 +17,7 @@ public class CourseItem {
         this.session = session;
     }
 
-    // Constructor para obtener un curso existente (con ID)
+
     public CourseItem(int id, String courseName, String sigle, String teacherName, String session) {
         this.id = id;
         this.courseName = courseName;

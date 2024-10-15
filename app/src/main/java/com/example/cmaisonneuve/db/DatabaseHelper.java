@@ -18,25 +18,25 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    // Nombre y versión de la base de datos
+    // Nom et version de la base de données
 
     private static final String DATABASE_NAME = "school.db";
     private static final int DATABASE_VERSION = 2;
 
-    // Tablas
+    // tableaux
     public static final String TABLE_USERS = "users";
     private static final String TABLE_COURSES = "courses";
     private static final String TABLE_QUIZZES = "quizzes";
     private static final String TABLE_MES_COURSES = "mescurses"; // Nueva tabla para las inscripciones
     /////////////////////////////////1
 
-    // Columnas de usuarios
+    // Colonnes utilisateur
     public static final String COLUMN_USER_ID = "id";
     public static final String COLUMN_USER_FULL_NAME = "fullname";
     public static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_USER_PASSWORD = "password";
 
-    // Columnas de cursos
+    // Colonnes de cours
     public static final String COLUMN_COURSES_ID = "id";
     private static final String COLUMN_COURSES_NAME = "name";
     private static final String COLUMN_COURSES_SIGLE = "sigle";
@@ -309,7 +309,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //////////////////////////////////////////////////////////////////1
     // Método para insertar en la tabla mescurses (inscripciones)
-// Método para insertar en la tabla mescurses (inscripciones)
+
     public boolean insertUserCourse(int userId, int courseId, String note) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

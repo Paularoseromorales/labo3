@@ -36,39 +36,33 @@ public class MesCoursFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_cours, container, false);
 
-        // Inicializar el RecyclerView
         recyclerView = view.findViewById(R.id.recyclerview);
 
-        // Inicializar la lista de cursos
         courseItemList = new ArrayList<>();
         db = new DatabaseHelper(getActivity());
 
-        // Configurar el adaptador con el listener de eliminación y visualización
+
         courseAdapter = new CourseAdapter(courseItemList, course -> {
-            // Aquí podrías manejar la modificación si lo deseas
+
         }, courseId -> {
-            // Lógica para mostrar el diálogo de confirmación de eliminación
             showDeleteConfirmationDialog(courseId);
         });
 
-        // Cargar los cursos desde la base de datos
         loadCoursesFromDatabase();
 
-        // Configurar el LayoutManager
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        // Agregar una separación entre los elementos
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        // Adjuntar el adaptador al RecyclerView
         recyclerView.setAdapter(courseAdapter);
 
         return view;
     }
 
-    // Método para mostrar el diálogo de confirmación de eliminación
+
+    // Méthode pour afficher la boîte de dialogue de confirmation de suppression
     private void showDeleteConfirmationDialog(int courseId) {
         // Obtener el curso a eliminar para mostrar la información
         CourseItem courseToDelete = null;
@@ -79,26 +73,22 @@ public class MesCoursFragment extends Fragment {
             }
         }
 
-        // Verificar si el curso existe
         if (courseToDelete == null) {
             Toast.makeText(getActivity(), "Cours introuvable.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Crear la alerta
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Confirmation de suppression");
         builder.setMessage("Vous êtes sûr de supprimer le cours : " + courseToDelete.getCourseName() + " ?");
 
-        // Configurar los botones "Oui" y "Non"
         builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Lógica para eliminar el curso
                 boolean success = db.deleteCourse(courseId);
                 if (success) {
                     Toast.makeText(getActivity(), "Cours supprimé avec succès", Toast.LENGTH_LONG).show();
-                    loadCoursesFromDatabase();  // Recargar la lista de cursos
+                    loadCoursesFromDatabase();
                 } else {
                     Toast.makeText(getActivity(), "Erreur lors de la suppression", Toast.LENGTH_LONG).show();
                 }
@@ -108,35 +98,30 @@ public class MesCoursFragment extends Fragment {
         builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Cerrar el diálogo sin hacer nada
+
                 dialog.dismiss();
             }
         });
 
-        // Mostrar la alerta
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
 
-    // Método para cargar los cursos desde la base de datos para el usuario actual
+    // Méthode pour charger les cours depuis la base de données pour l'utilisateur actuel
     public void loadCoursesFromDatabase() {
-        // Obtener el ID del usuario actual desde SharedPreferences
         SharedPreferences preferences = getActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
-        int currentUserId = preferences.getInt("currentUserId", -1);  // Verificar si se recupera el ID correcto
+        int currentUserId = preferences.getInt("currentUserId", -1);
 
-        // Aquí añadimos el Log para comprobar el ID del usuario
         Log.d("MesCoursFragment", "User ID: " + currentUserId);
 
         if (currentUserId == -1) {
             Toast.makeText(getActivity(), "Aucun utilisateur connecté", Toast.LENGTH_LONG).show();
-            return; // Salir si no hay usuario logueado
+            return;
         }
 
-        // Vaciar la lista antes de recargarla para evitar duplicados
         courseItemList.clear();
 
-        // Obtener los cursos del usuario actual desde la base de datos
-        Cursor cursor = db.getCoursesForCurrentUser(currentUserId);  // Asegurarse de que aquí se pasa el ID correcto
+        Cursor cursor = db.getCoursesForCurrentUser(currentUserId);
         if (cursor.getCount() == 0) {
             Toast.makeText(getActivity(), "Aucun cours trouvé...", Toast.LENGTH_LONG).show();
         } else {
@@ -148,7 +133,7 @@ public class MesCoursFragment extends Fragment {
                 String session = cursor.getString(4);
                 courseItemList.add(new CourseItem(id, name, sigle, teacher, session));
             }
-            // Notificar al adaptador que los datos han cambiado
+
             courseAdapter.notifyDataSetChanged();
         }
     }
@@ -158,6 +143,6 @@ public class MesCoursFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        loadCoursesFromDatabase(); // Recargar los cursos cuando se vuelve a este fragmento
+        loadCoursesFromDatabase();
     }
 }

@@ -51,7 +51,7 @@ public class ViewCoursActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_cours);
 
-        // Inicializa los TextViews, ImageView y Button
+
         courseNameText = findViewById(R.id.nomcourstext);
         sigleCourseText = findViewById(R.id.siglecourstext);
         teacherName = findViewById(R.id.enseignanttext);
@@ -62,10 +62,10 @@ public class ViewCoursActivity extends AppCompatActivity {
         btntakequiz = findViewById(R.id.btntakequiz);
         etudiantsList = findViewById(R.id.list_students);
 
-        // Inicializa el helper de la base de datos
+
         dbHelper = new DatabaseHelper(this);
 
-        // Recibe los datos del intent
+
         Intent intent = getIntent();
         int courseId = intent.getIntExtra("course_id", -1);
         String courseName = intent.getStringExtra("course_name");
@@ -74,19 +74,17 @@ public class ViewCoursActivity extends AppCompatActivity {
         String courseSession = intent.getStringExtra("course_session");
         int currentUserId = intent.getIntExtra("current_user_id", -1);  // Recibe la ID del usuario
 
-        // Muestra los datos en los TextViews
+
         courseNameText.setText(courseName);
         sigleCourseText.setText(courseSigle);
         teacherName.setText(courseTeacher);
         sessionText.setText(courseSession);
 
-        // Carga la imagen del curso desde la base de datos
         loadCourseImage(courseId);
 
-        // Configura la descarga del archivo
         fichier.setOnClickListener(view -> loadCourseFile(courseId)); // Carga y descarga el archivo
 
-        // Muestra u oculta los botones según el ID del usuario
+
         if (currentUserId == 1) {
             quizButton.setVisibility(View.VISIBLE);
             etudiantsList.setVisibility(View.VISIBLE);
@@ -100,33 +98,32 @@ public class ViewCoursActivity extends AppCompatActivity {
 
         btntakequiz.setOnClickListener(v -> {
             Intent takeQuizIntent = new Intent(ViewCoursActivity.this, TakeQuizActivity.class);
-            takeQuizIntent.putExtra("course_id", courseId); // Pasa el ID del curso para cargar el quiz
-            startActivity(takeQuizIntent); // Lanza la actividad para tomar el quiz
+            takeQuizIntent.putExtra("course_id", courseId);
         });
 
         etudiantsList.setOnClickListener(v -> {
             Intent studentIntent = new Intent(ViewCoursActivity.this, StudentActivity.class);
-            studentIntent.putExtra("current_user_id", currentUserId);  // Pasar la ID del usuario actual
-            studentIntent.putExtra("course_id", courseId);  // Pasar la ID del curso actual
+            studentIntent.putExtra("current_user_id", currentUserId);
+            studentIntent.putExtra("course_id", courseId);
             startActivity(studentIntent);
         });
     }
 
     private void loadCourseImage(int courseId) {
-        byte[] imageBytes = dbHelper.getCourseImage(courseId); // Recupera la imagen desde la base de datos
+        byte[] imageBytes = dbHelper.getCourseImage(courseId);
         if (imageBytes != null) {
             Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-            imageCours.setImageBitmap(bitmap); // Muestra la imagen en el ImageView
+            imageCours.setImageBitmap(bitmap);
         } else {
             Toast.makeText(this, "Image non disponible", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void loadCourseFile(int courseId) {
-        byte[] fileData = dbHelper.getCourseFile(courseId); // Recupera el archivo desde la base de datos
+        byte[] fileData = dbHelper.getCourseFile(courseId);
         if (fileData != null) {
             Log.d("File Size", "Taille du fichier: " + fileData.length + " bytes");
-            downloadFile(fileData, "document.pdf"); // Descarga el archivo como "document.pdf"
+            downloadFile(fileData, "document.pdf");
         } else {
             Toast.makeText(this, "Fichier non disponible", Toast.LENGTH_SHORT).show();
         }
@@ -134,9 +131,8 @@ public class ViewCoursActivity extends AppCompatActivity {
 
     private void downloadFile(byte[] fileData, String fileName) {
         try {
-            // Verifica la versión de Android
+
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-                // Para Android 10 (API 29) y superior, usar MediaStore para guardar en Downloads
                 ContentValues values = new ContentValues();
                 values.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
                 values.put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf");
@@ -155,7 +151,6 @@ public class ViewCoursActivity extends AppCompatActivity {
                     }
                 }
             } else {
-                // Para Android 9 (API 28) y versiones anteriores, usar almacenamiento tradicional
                 File downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
                 if (!downloadDir.exists()) {
                     downloadDir.mkdirs();

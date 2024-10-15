@@ -21,12 +21,12 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     private List<String> studentsList;
     private DatabaseHelper dbHelper;
-    private int courseId;  // courseId se usa para eliminar un estudiante de un curso específico
+    private int courseId;
 
     public StudentAdapter(List<String> studentsList, DatabaseHelper dbHelper, int courseId) {
         this.studentsList = studentsList;
         this.dbHelper = dbHelper;
-        this.courseId = courseId;  // Inicializar courseId
+        this.courseId = courseId;
     }
 
     @NonNull
@@ -46,16 +46,15 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             holder.btnRemoveStudent.setVisibility(View.VISIBLE);
         }
 
-        // Configura el botón para eliminar el estudiante
+
         holder.btnRemoveStudent.setOnClickListener(v -> {
-            // Obtener el userId basado en el nombre del estudiante
+
             int userId = getUserIdByName(studentName);
 
-            // Verifica si se obtuvo un userId válido
             if (userId != -1) {
                 boolean isDeleted = dbHelper.deleteStudentFromCourse(userId, courseId);
                 if (isDeleted) {
-                    // Eliminar el estudiante de la lista y notificar al adaptador
+
                     studentsList.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, studentsList.size());
@@ -74,9 +73,9 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         return studentsList.size();
     }
 
-    // Método para obtener el userId basado en el nombre del estudiante
+    // Méthode pour obtenir l'ID utilisateur en fonction du nom de l'étudiant
     private int getUserIdByName(String studentName) {
-        // Consulta en la tabla de usuarios para obtener el userId a partir del nombre completo
+
         Cursor cursor = dbHelper.getReadableDatabase().rawQuery("SELECT " + DatabaseHelper.COLUMN_USER_ID + " FROM " + DatabaseHelper.TABLE_USERS + " WHERE " + DatabaseHelper.COLUMN_USER_FULL_NAME + " = ?", new String[]{studentName});
 
         if (cursor != null && cursor.moveToFirst()) {
@@ -85,9 +84,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             return userId;
         }
         if (cursor != null) cursor.close();
-        return -1;  // Si no se encuentra el usuario, devuelve -1
+        return -1;
     }
-
     public static class StudentViewHolder extends RecyclerView.ViewHolder {
 
         ImageButton btnRemoveStudent;
