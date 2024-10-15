@@ -22,8 +22,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class CourseActivity extends AppCompatActivity {
-    private static final int PICK_IMAGE_REQUEST = 1; // Constante para seleccionar imágenes
-    private static final int PICK_FILE_REQUEST = 2; // Constante para seleccionar archivos
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int PICK_FILE_REQUEST = 2;
 
     private TextView courseNameText;
     private TextView sigleCourseText;

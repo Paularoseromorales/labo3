@@ -47,31 +47,29 @@ import java.io.ByteArrayOutputStream;
 
             DatabaseHelper dbHelper = new DatabaseHelper(this);
 
-            // Verificar si los cursos ya están creados
+
             if (!dbHelper.areCoursesAlreadyCreated()) {
-                // Obtener las imágenes predeterminadas desde drawable
+
                 byte[] javaImage = getImageFromDrawable(R.drawable.java_image);
                 byte[] webImage = getImageFromDrawable(R.drawable.web_image);
                 byte[] mysqlImage = getImageFromDrawable(R.drawable.mysql_image);
 
-                // Crear tres cursos con imágenes predeterminadas
-                CourseItem cours1 = new CourseItem(100, "Introduction à Java", "Cours de base pour apprendre Java", "Prof. Dupont", "Automne 2024", javaImage);
-                CourseItem cours2 = new CourseItem(101, "Développement Web ", "Apprentissage du développement web avec HTML et CSS", "Prof. Durand", "Automne 2024", webImage);
-                CourseItem cours3 = new CourseItem(102, "BD MySQL", "Cours pour comprendre les bases de données avec MySQL", "Prof. Lefebvre", "Automne 2024", mysqlImage);
-//                User admin = new User(1, "admin", "admin", "admin");
-                // Insertar los cursos en la base de datos con imágenes
+
+                CourseItem cours1 = new CourseItem(100, "Introduction à Java", "Cours de base pour apprendre Java", "Prof. Dupont", "Debut: Automne 2024", javaImage);
+                CourseItem cours2 = new CourseItem(101, "Développement Web ", "Apprentissage du développement web avec HTML et CSS", "Prof. Durand", "Debut:Automne 2024", webImage);
+                CourseItem cours3 = new CourseItem(102, "BD MySQL", "Cours pour comprendre les bases de données avec MySQL", "Prof. Lefebvre", "Debut:Automne 2024", mysqlImage);
+
                 dbHelper.insertCourses(cours1, javaImage, null);
                 dbHelper.insertCourses(cours2, webImage, null);
                 dbHelper.insertCourses(cours3, mysqlImage, null);
 
-                // Log de verificación
-                Log.d("DatabaseHelper", "Cursos con imágenes insertados con éxito.");
+
+                Log.d("DatabaseHelper", "Cours avec des images insérées avec succès.");
             } else {
-                // Ya están creados los cursos
-                Log.d("DatabaseHelper", "Los cursos ya existen, no se volverán a crear.");
+
+                Log.d("DatabaseHelper", "Les cours existent déjà, ils ne seront pas recréés.");
             }
 
-            // Configurar el ViewPager y TabLayout
             editCourseLauncher = registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
                     result -> {
