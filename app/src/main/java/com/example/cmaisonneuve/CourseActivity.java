@@ -30,21 +30,21 @@ public class CourseActivity extends AppCompatActivity {
     private TextView teacherName;
     private TextView sessionText;
     private Button addCourseButton;
-    private Button selectImageButton; // Botón para seleccionar imagen
-    private Button selectFileButton; // Botón para seleccionar archivo
-    private TextView imageNameTextView; // TextView para mostrar el nombre de la imagen
-    private TextView fileNameTextView; // TextView para mostrar el nombre del archivo
+    private Button selectImageButton;
+    private Button selectFileButton;
+    private TextView imageNameTextView;
+    private TextView fileNameTextView;
     private DatabaseHelper db;
 
-    private byte[] imageData; // Datos de la imagen
-    private byte[] fileData; // Datos del archivo
+    private byte[] imageData;
+    private byte[] fileData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
 
-        // Inicializar vistas
+
         courseNameText = findViewById(R.id.nomcourstext);
         sigleCourseText = findViewById(R.id.siglecourstext);
         teacherName = findViewById(R.id.enseignanttext);
