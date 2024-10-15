@@ -64,7 +64,7 @@ public class MesCoursFragment extends Fragment {
 
     // Méthode pour afficher la boîte de dialogue de confirmation de suppression
     private void showDeleteConfirmationDialog(int courseId) {
-        // Obtener el curso a eliminar para mostrar la información
+
         CourseItem courseToDelete = null;
         for (CourseItem course : courseItemList) {
             if (course.getId() == courseId) {

@@ -53,7 +53,7 @@ public class InscriptionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String selectedCourseName = spinnerCours.getSelectedItem().toString();
-                int selectedCourseId = getCourseIdByName(selectedCourseName); // Obtener el ID del curso
+                int selectedCourseId = getCourseIdByName(selectedCourseName);
 
                 SharedPreferences preferences = getActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
                 int currentUserId = preferences.getInt("currentUserId", -1); // Obtener el userId guardado
@@ -63,7 +63,7 @@ public class InscriptionFragment extends Fragment {
                     return;
                 }
 
-                boolean result = databaseHelper.insertUserCourse(currentUserId, selectedCourseId, "Note: N/A"); // Nota por defecto
+                boolean result = databaseHelper.insertUserCourse(currentUserId, selectedCourseId, "Note: N/A");
 
                 if (result) {
                     Toast.makeText(getActivity(), "Inscription réussie au cours: " + selectedCourseName, Toast.LENGTH_SHORT).show();

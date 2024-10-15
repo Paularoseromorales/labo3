@@ -19,7 +19,6 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Nom et version de la base de données
-
     private static final String DATABASE_NAME = "school.db";
     private static final int DATABASE_VERSION = 2;
 
@@ -27,8 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_USERS = "users";
     private static final String TABLE_COURSES = "courses";
     private static final String TABLE_QUIZZES = "quizzes";
-    private static final String TABLE_MES_COURSES = "mescurses"; // Nueva tabla para las inscripciones
-    /////////////////////////////////1
+    private static final String TABLE_MES_COURSES = "mescurses";
 
     // Colonnes utilisateur
     public static final String COLUMN_USER_ID = "id";
@@ -42,42 +40,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_COURSES_SIGLE = "sigle";
     private static final String COLUMN_COURSES_TEACHER = "teacher";
     private static final String COLUMN_COURSES_SESSION = "session";
-    private static final String COLUMN_COURSES_IMAGE = "image"; // Columna para la imagen
-    private static final String COLUMN_COURSES_FILE = "file"; // Columna para el archivo
+    private static final String COLUMN_COURSES_IMAGE = "image";
+    private static final String COLUMN_COURSES_FILE = "file";
 
 
-    // Columnas de la tabla quizzes
+    // quizzes
     private static final String COLUMN_QUIZ_ID = "id";
     private static final String COLUMN_QUIZ_COURSE_ID = "course_id";
 
-    // Pregunta 1
+    // q1 1
     private static final String COLUMN_QUIZ_QUESTION_1 = "question1";
     private static final String COLUMN_QUIZ_OPTION1_Q1 = "option1_q1";
     private static final String COLUMN_QUIZ_OPTION2_Q1 = "option2_q1";
     private static final String COLUMN_QUIZ_OPTION3_Q1 = "option3_q1";
     private static final String COLUMN_QUIZ_CORRECT_ANSWER_Q1 = "correct_answer_q1";
 
-    // Pregunta 2
+    // q 2
     private static final String COLUMN_QUIZ_QUESTION_2 = "question2";
     private static final String COLUMN_QUIZ_OPTION1_Q2 = "option1_q2";
     private static final String COLUMN_QUIZ_OPTION2_Q2 = "option2_q2";
     private static final String COLUMN_QUIZ_OPTION3_Q2 = "option3_q2";
     private static final String COLUMN_QUIZ_CORRECT_ANSWER_Q2 = "correct_answer_q2";
 
-    // Pregunta 3
+    // q 3
     private static final String COLUMN_QUIZ_QUESTION_3 = "question3";
     private static final String COLUMN_QUIZ_OPTION1_Q3 = "option1_q3";
     private static final String COLUMN_QUIZ_OPTION2_Q3 = "option2_q3";
     private static final String COLUMN_QUIZ_OPTION3_Q3 = "option3_q3";
     private static final String COLUMN_QUIZ_CORRECT_ANSWER_Q3 = "correct_answer_q3";
 
-    //////////////////////////////////////////////////////////////////1
-    // Columnas de mescurses (inscripciones)
+   //Mes courses
     private static final String COLUMN_MES_COURSES_ID = "id";
     public static final String COLUMN_MES_COURSES_USER_ID = "user_id";
     private static final String COLUMN_MES_COURSES_COURSE_ID = "course_id";
-    private static final String COLUMN_MES_COURSES_NOTE = "note"; // Columna para la nota
-    //////////////////////////////////////////////////////////////////1
+    private static final String COLUMN_MES_COURSES_NOTE = "note";
+
 
 
     public DatabaseHelper(@Nullable Context context) {
@@ -98,8 +95,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_COURSES_SIGLE + " TEXT,"
                 + COLUMN_COURSES_TEACHER + " TEXT,"
                 + COLUMN_COURSES_SESSION + " TEXT,"
-                + COLUMN_COURSES_IMAGE + " BLOB," // Columna para la imagen
-                + COLUMN_COURSES_FILE + " BLOB" + ")"; // Columna para el archivo
+                + COLUMN_COURSES_IMAGE + " BLOB,"
+                + COLUMN_COURSES_FILE + " BLOB" + ")";
 
         String CREATE_QUIZ_TABLE = "CREATE TABLE " + TABLE_QUIZZES + "("
                 + COLUMN_QUIZ_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -142,7 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_COURSES);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_MES_COURSES); // Eliminar la tabla mescurses si existe
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_MES_COURSES);
         onCreate(sqLiteDatabase);
     }
 
@@ -153,7 +150,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_USERNAME, user.getUsername());
         contentValues.put(COLUMN_USER_PASSWORD, user.getPassword());
         long result = db.insert(TABLE_USERS, null, contentValues);
-        return result != -1; // Retorna true si la inserción fue exitosa
+        return result != -1;
     }
 
 
@@ -166,18 +163,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String fullName = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USER_FULL_NAME));
 
             User loggedInUser = new User();
-            loggedInUser.setId(userId); // Asigna el ID del usuario
-            loggedInUser.setFullname(fullName); // Asigna el nombre completo del usuario
+            loggedInUser.setId(userId);
+            loggedInUser.setFullname(fullName);
 
             cursor.close();
-            return loggedInUser; // Devuelve el objeto User con el ID y el nombre completo
+            return loggedInUser;
         }
 
         if (cursor != null) {
             cursor.close();
         }
 
-        return null; // Devuelve null si las credenciales no son correctas
+        return null;
     }
 
     public User getUserByUsername(String username) {
@@ -205,7 +202,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (imageData != null) {
             contentValues.put(COLUMN_COURSES_IMAGE, imageData);
-            Log.d("DatabaseInsert", "Image size: " + imageData.length); // Verifica el tamaño de la imagen
+            Log.d("DatabaseInsert", "Image size: " + imageData.length);
         } else {
             Log.d("DatabaseInsert", "No image provided");
         }
@@ -256,7 +253,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                String courseName = cursor.getString(0); // Obtener el nombre del curso
+                String courseName = cursor.getString(0);
                 courseNames.add(courseName);
             } while (cursor.moveToNext());
         }
@@ -280,7 +277,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean deleteCourse(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.delete(TABLE_COURSES, COLUMN_COURSES_ID + "=?", new String[]{String.valueOf(id)});        return result > 0; // Retorna true si la eliminación fue exitosa
+        long result = db.delete(TABLE_COURSES, COLUMN_COURSES_ID + "=?", new String[]{String.valueOf(id)});
+        return result > 0;
     }
 
     public byte[] getCourseImage(int courseId) {
@@ -290,9 +288,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null && cursor.moveToFirst()) {
             byte[] imageData = cursor.getBlob(0);
             cursor.close();
-            return imageData; // Devuelve los datos de la imagen
+            return imageData;
         }
-        return null; // No se encontró la imagen
+        return null;
     }
 
     public byte[] getCourseFile(int courseId) {
@@ -302,29 +300,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null && cursor.moveToFirst()) {
             byte[] fileData = cursor.getBlob(0);
             cursor.close();
-            return fileData; // Devuelve los datos del archivo
+            return fileData;
         }
-        return null; // No se encontró el archivo
+        return null;
     }
 
-    //////////////////////////////////////////////////////////////////1
-    // Método para insertar en la tabla mescurses (inscripciones)
 
+    //methode inserer mes courses
     public boolean insertUserCourse(int userId, int courseId, String note) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_MES_COURSES_USER_ID, userId);  // Asegurarse de que aquí llegue el userId correcto
+        contentValues.put(COLUMN_MES_COURSES_USER_ID, userId);
         contentValues.put(COLUMN_MES_COURSES_COURSE_ID, courseId);
         contentValues.put(COLUMN_MES_COURSES_NOTE, note);
 
         long result = db.insert(TABLE_MES_COURSES, null, contentValues);
         db.close();
 
-        return result != -1; // Retorna true si la inserción fue exitosa
+        return result != -1;
     }
 
 
-    // Método para obtener los cursos en los que está inscrito un usuario específico
     public Cursor getCoursesForCurrentUser(int userId) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT c." + COLUMN_COURSES_ID + ", c." + COLUMN_COURSES_NAME +
@@ -356,9 +352,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    //////////////////////////////////////////////////////////////////1
-
-
     public boolean insertQuiz(int courseId,
                               String question1, String option1_q1, String option2_q1, String option3_q1, int correctAnswer_q1,
                               String question2, String option1_q2, String option2_q2, String option3_q2, int correctAnswer_q2,
@@ -366,38 +359,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        // Asegúrate de que el courseId se almacena correctamente
-        contentValues.put("course_id", courseId); // Aquí estás guardando el courseId en la tabla de quizzes
 
-        // Agrega este log para verificar que el courseId es correcto
+        contentValues.put("course_id", courseId);
+
         Log.d("DatabaseHelper", "Almacenando quiz con courseId: " + courseId);
 
-        // Pregunta 1
+        // q 1
         contentValues.put("question1", question1);
         contentValues.put("option1_q1", option1_q1);
         contentValues.put("option2_q1", option2_q1);
         contentValues.put("option3_q1", option3_q1);
         contentValues.put("correct_answer_q1", correctAnswer_q1);
 
-        // Pregunta 2
+        // q 2
         contentValues.put("question2", question2);
         contentValues.put("option1_q2", option1_q2);
         contentValues.put("option2_q2", option2_q2);
         contentValues.put("option3_q2", option3_q2);
         contentValues.put("correct_answer_q2", correctAnswer_q2);
 
-        // Pregunta 3
+        // q 3
         contentValues.put("question3", question3);
         contentValues.put("option1_q3", option1_q3);
         contentValues.put("option2_q3", option2_q3);
         contentValues.put("option3_q3", option3_q3);
         contentValues.put("correct_answer_q3", correctAnswer_q3);
 
-        // Inserta el quiz en la base de datos
+        //
         long result = db.insert("quizzes", null, contentValues);
 
         db.close();
-        return result != -1; // Retorna true si la inserción fue exitosa
+        return result != -1;
     }
 
 
@@ -412,22 +404,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         int count = 0;
         if (cursor.moveToFirst()) {
-            count = cursor.getInt(0); // Obtenemos el número de cursos existentes
+            count = cursor.getInt(0);
         }
 
         cursor.close();
         db.close();
 
-        return count >= 3; // Si ya hay 3 o más cursos, retorna true
+        return count >= 3;
     }
 
 
     public boolean deleteStudentFromCourse(int userId, int courseId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        // Ejecutar la eliminación del registro en la tabla mescourses basado en userId y courseId
+
         long result = db.delete(TABLE_MES_COURSES, COLUMN_MES_COURSES_USER_ID + "=? AND " + COLUMN_MES_COURSES_COURSE_ID + "=?",
                 new String[]{String.valueOf(userId), String.valueOf(courseId)});
-        return result > 0; // Retorna true si la eliminación fue exitosa
+        return result > 0;
     }
 
 

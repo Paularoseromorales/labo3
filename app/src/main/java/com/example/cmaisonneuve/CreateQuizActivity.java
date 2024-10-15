@@ -118,7 +118,7 @@ public class CreateQuizActivity extends AppCompatActivity {
         int selectedId = radioGroup.getCheckedRadioButtonId();
         if (selectedId != -1) {
             RadioButton selectedRadioButton = findViewById(selectedId);
-            return radioGroup.indexOfChild(selectedRadioButton) + 1; // Devuelve el índice de la opción seleccionada (1, 2, o 3)
+            return radioGroup.indexOfChild(selectedRadioButton) + 1;
         }
         return -1;
     }

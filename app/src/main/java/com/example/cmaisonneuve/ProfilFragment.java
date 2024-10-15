@@ -56,17 +56,16 @@ public class ProfilFragment extends Fragment {
         logoutTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Borrar las SharedPreferences para cerrar la sesión
+
                 SharedPreferences preferences = getActivity().getSharedPreferences("user_prefs", getActivity().MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.clear();  // Borra todas las preferencias
+                editor.clear();
                 editor.apply();
 
-                // Redirigir al LoginActivity
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Limpia la pila de actividades
                 startActivity(intent);
-                getActivity().finish(); // Finaliza la actividad actual
+                getActivity().finish();
             }
         });
 

@@ -95,14 +95,14 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
             // Crée l'intention de passer à l'activité suivante
             Intent intent = new Intent(context, ViewCoursActivity.class);
-            intent.putExtra("course_id", courseItem.getId());  // Pasar la ID del curso
+            intent.putExtra("course_id", courseItem.getId());
             intent.putExtra("course_name", courseItem.getCourseName());
             intent.putExtra("course_sigle", courseItem.getSigle());
             intent.putExtra("course_teacher", courseItem.getTeacherName());
             intent.putExtra("course_session", courseItem.getSession());
-            intent.putExtra("image", courseItem.getImage());  // Pasar imagen si es necesario
-            intent.putExtra("fichier", courseItem.getFile());  // Pasar archivo si es necesario
-            intent.putExtra("current_user_id", currentUserId);  // Pasar la ID del usuario actual que ya obtuviste
+            intent.putExtra("image", courseItem.getImage());
+            intent.putExtra("fichier", courseItem.getFile());
+            intent.putExtra("current_user_id", currentUserId);
             context.startActivity(intent);
         });
 
